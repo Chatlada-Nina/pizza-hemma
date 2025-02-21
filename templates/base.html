@@ -26,7 +26,7 @@
      <!-- Google Fonts CSS -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
-     <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@400;500;600;700&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 
      <!-- Font Awesome CSS -->
@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -107,7 +107,67 @@
       <!-- Content Goes here -->
       {% endblock %}
 
+
     <!-- Footer -->
+    <footer id="footer" class="mt-auto">
+      <div class="container">
+        <div class="row justify-content-center mt-2 mb-0">
+
+          <!-- Contact info -->
+          <div class="col-12 col-md-6 mt-4 contact-info">
+            <h3 class="mb-4 main-text footer-title">CONTACT INFO</h3>
+            <address class="sub-text footer-body">
+              <strong
+                ><i class="fa-solid fa-map-pin"></i> Pizza Hemma</strong
+              ><br>
+              555 Baked Street <br>
+              Crispy Bread City, Heaven 59871
+            </address>
+            <p class="sub-text footer-body">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              +01(999)165-7680<br>
+              <i class="fa-regular fa-envelope"></i>
+              pizzahemma@mail.com
+            </p>
+            <p class="sub-text footer-body">
+              <strong>Open Hours:</strong> Everyday : 11:00AM - 20:00PM
+            </p>
+          </div>
+
+          <!-- Social media -->
+          <div class="col-12 col-md-6 mt-4 social">
+            <h3 class="main-text footer-title">FOLLOW US</h3>
+            <div class="social-links my-4">
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                aria-label="Visit our Facebook page (open in a new tab)"
+                rel="noopener"
+                ><i class="fa-brands fa-square-facebook"></i>
+              </a>
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                aria-label="Visit our Instagram page (open in a new tab)"
+                rel="noopener"
+                ><i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.tiktok.com"
+                target="_blank"
+                aria-label="Visit our Tiktok page (open in a new tab)"
+                rel="noopener"
+                ><i class="fa-brands fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <hr>
+        <p>© 2025 Pizza Hemma Restaurant, All right reserved.</p>
+      </div>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script

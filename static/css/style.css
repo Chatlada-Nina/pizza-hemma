@@ -11,6 +11,8 @@
     --button-hover-color: #ec6952;
 }
 
+
+/* Global styles */
 body {
     background-color: var(--background-color);
     color: var(--text-color);
@@ -67,3 +69,90 @@ body {
     color: var(--button-text-color);
 }
 
+
+
+/* Block Content */
+.main-text {
+    font-family: var(--primary-font);
+}
+
+.sub-text {
+    font-family: var(--secondary-font);
+}
+
+.main-text, .sub-text {
+    color: var(--text-color);
+}
+
+
+/* Footer */
+
+#footer {
+    background-color: var(--nav-color);
+}
+
+.footer-title {
+    font-size: 0.9rem;
+}
+
+.footer-body {
+    font-size: 1rem;
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: var(--text-hover-color);
+}
+
+
+/* Media Queries */
+
+
+/* For screen size (>768px) */
+@media screen and (min-width: 768px) {
+    .social {
+       text-align: center;
+    }
+}
+
+/* For screen size (<=768px) */
+@media screen and (max-width: 768px) {
+    .contact-info, .social {
+        text-align: center;
+    }
+}
+
+
+@media screen and (max-width: 1318px) {
+    .nav-link {
+        font-size: 0.9rem;
+    }
+    .nav-item {
+        padding: 0px 5px;
+    }
+
+    .btn-order {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (min-width: 1319px) {
+    .footer-title {
+        font-size: 1.3rem;
+    }
+    
+    .footer-body {
+        font-size: 1.2rem;
+    }
+
+    .social-links a {
+        font-size: 2rem;
+    }
+}
