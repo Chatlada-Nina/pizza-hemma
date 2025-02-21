@@ -1,5 +1,6 @@
 {% load static %}
 
+{% url "home" as home_url %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -21,9 +22,15 @@
       href=""
       type="image/x-icon">
 
+
      <!-- Google Fonts CSS -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@400;500;600;700&display=swap" rel="stylesheet">
+
 
      <!-- Font Awesome CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
      <!-- Bootstrap CSS -->
     <link
@@ -37,7 +44,63 @@
   </head>
 
   <body>
+
     <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'homepage' %}"
+          ><img
+            class="logo"
+            src="{% static 'images/logo.png' %}"
+            alt="pizz-hemma-logo"></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"
+            ><i class="fa-solid fa-bars"></i
+          ></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto py-3 px-5">
+            <li class="nav-item">
+              <a class="nav-link" href="">About us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="" href="">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="" href="">Member Club</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="" href="">Reviews</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="" href="">Contact</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" aria-current="" href="">
+                <i class="fa-solid fa-circle-user"></i> Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" aria-current="" href=""></a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="btn-order" aria-current="" href="">ORDER HERE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
 
 
     {% block content %}
