@@ -6,24 +6,24 @@
     --background-color: #c5c3c363;
     --text-color: #35724c;
     --text-hover-color: #0e4b20;
-    --button-bg-color: #d52b0c;
-    --button-text-color: #fff;
-    --button-hover-color: #ec6952;
+    --button-bg-color: rgba(244, 73, 73, 0.153);
+    --button-text-color:#d52b0c;
+    --button-hover-color: #d52b0c;
+    --button-text-hover-color:#fff;
 }
 
 
 /* Global styles */
 body {
     background-color: var(--background-color);
-    color: var(--text-color);
-    padding-top: 120px;
+    color: var(--text-color); 
 }
 
 
 /* Nevigation bar */
 .logo {
     padding-left: 20px;
-    max-width: 200px;
+    max-width: 180px;
 }
 
 .navbar {
@@ -65,8 +65,7 @@ body {
 }
 .btn-order:hover {
     background-color: var(--button-hover-color);
-    border: 1px solid var(--button-hover-color);
-    color: var(--button-text-color);
+    color: var(--button-text-hover-color);
 }
 
 
@@ -83,6 +82,47 @@ body {
 .main-text, .sub-text {
     color: var(--text-color);
 }
+
+.all-content {
+    margin-top: 180px;
+    margin-bottom: 50px;
+}
+
+.btn-link {
+    color: var(--text-color);
+}
+
+.btn-link:hover {
+    color: var(--text-hover-color);
+}
+
+.btn-account {
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid var(--button-bg-color);
+    background: var(--button-bg-color);
+    padding: 5px 10px;
+    color: var(--button-text-color);
+    transition: 0.3s ease-in-out;
+}
+
+.btn-account:hover {
+    background-color: var(--button-hover-color);
+    color: var(--button-text-hover-color);
+}
+
+#id_login, #id_password {
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    background: none;
+    width: 100%;
+}
+
+::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
 
 
 /* Footer */
@@ -116,7 +156,7 @@ body {
 
 
 /* For screen size (>768px) */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
     .social {
        text-align: center;
     }
@@ -154,5 +194,9 @@ body {
 
     .social-links a {
         font-size: 2rem;
+    }
+
+    .all-content {
+        margin-top: 200px;
     }
 }
