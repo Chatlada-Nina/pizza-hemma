@@ -21,6 +21,7 @@ body {
 
 
 /* Nevigation bar */
+
 .logo {
     padding-left: 20px;
     max-width: 180px;
@@ -45,7 +46,7 @@ body {
 
 .nav-link:hover {
     font-size: 1.4rem;
-    color: var(--text-color);
+    color: var(--text-hover-color);
     text-decoration: underline;
 }  
 
@@ -56,6 +57,7 @@ body {
 
 .btn-order {
     border: 1px solid var(--button-bg-color);
+    font-family: var(--primary-font);
     padding: 10px 20px 10px 20px;
     font-size: 1.2rem;
     background-color: var(--button-bg-color);
@@ -71,6 +73,24 @@ body {
 
 
 /* Block Content */
+
+.banner {
+    width: 100%;
+    margin-top: 186px;
+}
+
+
+.description h2 {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.description p {
+    font-size: 0.8rem;
+}
+.des-new-menu {
+    font-size: 1.2rem;
+}
+
 .main-text {
     font-family: var(--primary-font);
 }
@@ -163,6 +183,15 @@ body {
     .social {
        text-align: center;
     }
+    .description h2 {
+        font-size: 1.2rem;
+    }
+    .description p {
+        font-size: 1rem;
+    }
+    .des-new-menu {
+        font-size: 1.5rem;
+    }
 }
 
 /* For screen size (<=768px) */
@@ -172,7 +201,22 @@ body {
     }
 }
 
+/* For screen size (>=992px) */
+@media screen and (min-width: 992px) {
+   
+    .description h2 {
+        font-size: 1.8rem;
+    }
+    .description p {
+        font-size: 1.4rem;
+    }
+    .des-new-menu {
+        font-size: 2.2rem;
+    }
+}
 
+
+/* For screen size (<=1318px) */
 @media screen and (max-width: 1318px) {
     .nav-link {
         font-size: 0.9rem;
@@ -186,6 +230,8 @@ body {
     }
 }
 
+
+/* For screen size (>=1319px) */
 @media screen and (min-width: 1319px) {
     .footer-title {
         font-size: 1.3rem;
