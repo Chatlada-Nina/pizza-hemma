@@ -2,20 +2,53 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <div class="row justify-content-center">
+<div class="container">
+    <div class="row justify-content-center mb-4">
             <div>
                 <img class="banner" src="{% static 'images/banner.png' %}" alt="banner">
             </div>
             <div class="description text-center my-4">
-                <h2 class="main-text mb-3">Experience A Taste of The Nordic Sea <br><span class=" des-new-menu">Smokey Salmon Pizza</span>🍕</h2>
+                <h2 class="main-text mb-3">Experience A Taste of The Nordic Sea <br><span class=" des-new-menu">Smokey Salmon Pizza</span></h2>
                 <p class="sub-text mb-4">Smoked salmon, fresh dill, tangy cream cheese, and a crisp crust. A mouthwatering blend perfect for seafood lovers.  
                 </p>
                 <a href="" class="btn-order submit-btn my-4">ORDER NOW!</a>
             </div>
-        </div> <hr>
+    </div> <hr>
 
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            <div class="text-center my-4">
+                <h2 class="main-text mb-3">Nice Price for the slice!🍕</h2>
+                <a href="" class="link-text my-4">>> See Our Menu Here</a>
+            </div>
+            <div class="col-12 col-md-4 text-center">
+                <img class="menu-list" src="{% static 'images/pizza.jpg' %}" alt="pizza">
+                <p class="mt-3"><a href="" class="link-text">Pizza</a></p>
+            </div>
 
+            <div class="col-12 col-md-4 text-center">
+                <img class="menu-list" src="{% static 'images/appetizer.jpg' %}" alt="pizza">
+                <p class="mt-3"><a href="" class="link-text">Appetizer</a></p>
+            </div>
+
+            <div class="col-12 col-md-4 text-center">
+                <img class="menu-list" src="{% static 'images/drink.jpg' %}" alt="pizza">
+                <p class="mt-3"><a href="" class="link-text">Drink</a></p>
+            </div>
+        </div>
+    </div> <hr>
+
+    <div class="row justify-content-center mb-4">
+        <div class="description text-center my-4">
+            <h2 class="main-text mb-3">Subscribe us to get special offers today!</h2>
+        </div>
+        <div class="col-12 col-md-8 mt-4 sub-text d-flex justify-content-center">
+            <input class="sub-text" type="email">
+        </div>
+        <div class="col-12 col-md-4 mt-4 sub-text d-flex justify-content-center">
+            <button class="btn-account">Subscribe</button>
         </div>
     </div>
+</div>
+
 {% endblock %}

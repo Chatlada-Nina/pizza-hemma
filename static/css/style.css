@@ -137,6 +137,23 @@ body {
     color: var(--button-text-hover-color);
 }
 
+.link-text {
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.link-text:hover {
+    color: var(--text-hover-color);
+    text-decoration: underline;
+}
+
+.menu-list {
+    width: 50%;
+    border-radius: 50%;
+}
+
 
 #id_login, #id_password,
 #id_email, #id_username,
