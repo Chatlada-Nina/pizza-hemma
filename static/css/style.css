@@ -3,7 +3,7 @@
     --primary-font: 'Alfa Slab One', serif;
     --secondary-font: 'Chivo', serif;
     --nav-color: #ffffff;
-    --background-color: #c5c3c363;
+    --background-color: #e0e5df;
     --text-color: #35724c;
     --text-hover-color: #0e4b20;
     --button-bg-color: rgba(244, 73, 73, 0.153);
@@ -74,11 +74,20 @@ body {
 
 /* Block Content */
 
+.space {
+    margin-bottom: 50px;
+}
+
 .banner {
     width: 100%;
     margin-top: 186px;
     animation-name: fadein;
     animation-duration: 4s;
+}
+
+.banner-bottom {
+    width: 100%;
+    margin-top: 30px;
 }
 
 @keyframes fadein {
@@ -154,7 +163,6 @@ body {
     border-radius: 50%;
 }
 
-
 #id_login, #id_password,
 #id_email, #id_username,
 #id_password1, #id_password2 {
@@ -167,6 +175,10 @@ body {
 ::placeholder {
     color: var(--text-color);
     opacity: 0.5;
+}
+
+.subscribe {
+    width: 100%;
 }
 
 
@@ -214,6 +226,9 @@ body {
     }
     .des-new-menu {
         font-size: 1.5rem;
+    }
+    .subscribe {
+        width: 60%;
     }
 }
 
