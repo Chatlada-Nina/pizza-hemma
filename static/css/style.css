@@ -74,6 +74,8 @@ body {
 
 /* Block Content */
 
+/*------ Home page ------- */
+
 .space {
     margin-bottom: 50px;
 }
@@ -181,6 +183,13 @@ body {
     width: 100%;
 }
 
+.about-text {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+
+/*------ Menu page ------- */
 
 
 /* Footer */
@@ -230,6 +239,10 @@ body {
     .subscribe {
         width: 60%;
     }
+    .about-text {
+        margin-top: 186px;
+        font-size: 0.6rem;
+    }
 }
 
 /* For screen size (<=768px) */
@@ -250,6 +263,16 @@ body {
     }
     .des-new-menu {
         font-size: 2.2rem;
+    }
+    .about-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* For screen size (>=1200px) */
+@media screen and (min-width: 1200px) {
+    .about-text {
+        font-size: 1rem;
     }
 }
 

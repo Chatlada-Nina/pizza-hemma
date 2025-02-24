@@ -2,6 +2,8 @@
 
 {% url "home" as home_url %}
 
+{% url "about" as about_url %}
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
   <head>
@@ -69,7 +71,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto py-3 px-5">
             <li class="nav-item">
-              <a class="nav-link" href="">About us</a>
+              <a class="nav-link {% if request.path == about_url %}active{% endif %}" aria-current="page" href="{% url 'about' %}">About us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="" href="">Menu</a>
