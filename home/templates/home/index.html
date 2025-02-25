@@ -11,7 +11,7 @@
                 <h2 class="main-text mb-3">Experience A Taste of The Nordic Sea <br><span class=" des-new-menu">Smokey Salmon Pizza</span></h2>
                 <p class="sub-text mb-4">Smoked salmon, fresh dill, tangy cream cheese, and a crisp crust. A mouthwatering blend perfect for seafood lovers.  
                 </p>
-                <a href="" class="btn-order submit-btn my-4">ORDER NOW!</a>
+                <a href="{% url 'all_menus' %}" class="btn-order submit-btn my-4">ORDER NOW!</a>
             </div>
     </div> <hr class="space">
 
@@ -19,21 +19,21 @@
         <div class="row justify-content-center">
             <div class="text-center my-4">
                 <h2 class="main-text mb-3">Nice Price for the slice!🍕</h2>
-                <a href="" class="link-text my-4">>> See Our Menu Here</a>
+                <a href="{% url 'all_menus' %}?menu_list=pizza,appetizer,drinks" class="link-text my-4">>> See Our Menu Here</a>
             </div>
             <div class="col-12 col-md-4 text-center">
-                <a class="link-text" href=""><img class="menu-list" src="{% static 'images/pizza.jpg' %}" alt="pizza">
+                <a class="link-text" href="{% url 'all_menus' %}?menu_list=pizza"><img class="menu-list" src="{% static 'images/pizza.jpg' %}" alt="pizza">
                 <p class="mt-3">Pizza</p></a>
             </div>
 
             <div class="col-12 col-md-4 text-center">
-                <a class="link-text" href=""><img class="menu-list" src="{% static 'images/appetizer.jpg' %}" alt="pizza">
+                <a class="link-text" href="{% url 'all_menus' %}?menu_list=appetizer"><img class="menu-list" src="{% static 'images/appetizer.jpg' %}" alt="pizza">
                 <p class="mt-3">Appetizer</p></a>
             </div>
 
             <div class="col-12 col-md-4 text-center">
-                <a class="link-text" href=""><img class="menu-list" src="{% static 'images/drink.jpg' %}" alt="pizza">
-                <p class="mt-3">Drink</p></a>
+                <a class="link-text" href="{% url 'all_menus' %}?menu_list=drinks"><img class="menu-list" src="{% static 'images/drink.jpg' %}" alt="pizza">
+                <p class="mt-3">Drinks</p></a>
             </div>
         </div>
     </div> <hr class="space">

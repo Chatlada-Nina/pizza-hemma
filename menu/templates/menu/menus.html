@@ -1,10 +1,48 @@
+{% extends "base.html" %}
 
-{% block content %}
 {% load static %}
 
-<div class="container">
+{% block content %}
+
+<div class="container-fluid menu-page">
     <div class="row justify-content-center">
-        {{ menus }}
+        <div class="col text-center my-4">
+            <h2>Menu</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="menu-container col-10 off-set-1">
+            <div class="row mt-1 mb-2"></div>
+            <div class="row">
+                {% for menu in menus %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
+                        <div class="card h-100 border-0">
+                            {% if menu.image %}
+                            <div>
+                                <img src="{{ menu.image.url }}" alt="{{ menu.name }}" class="card-img-top img-fluid">
+                            </div>
+                            {% else %}
+                            <div>
+                                <img src="{% static 'images/logo.png' %}" alt="{{ menu.name }}" class="card-img-top img-fluid">
+                            </div>
+                            {% endif %}
+                            <div class="card-body pb-0">
+                                <h4 class="mb-0">{{ menu.name }}</h4>
+                                <p>{{ menu.description }}</p>
+                            </div>
+                            <div class="card-footer pt-0 border-0 text-left">
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="lead mb-0 text-left font-weight-bold">{{ menu.price|floatformat:0 }} Sek</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}
