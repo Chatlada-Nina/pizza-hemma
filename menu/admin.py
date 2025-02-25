@@ -13,7 +13,7 @@ class MenuItemAdmin(admin.ModelAdmin):
         'image',
     )
     search_fields = ["name"]
-    ordering = ('-created_on',)
+    ordering = ('menu_list',)
 
 @admin.register(MenuList)
 class MenuListAdmin(admin.ModelAdmin):
