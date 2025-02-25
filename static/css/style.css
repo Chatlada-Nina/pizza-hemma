@@ -40,12 +40,12 @@ body {
 .nav-link {
     text-decoration: none;
     color: var(--text-color);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     transition: 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--text-hover-color);
     text-decoration: underline;
 }  
@@ -97,15 +97,9 @@ body {
 50% {opacity: 1:}
 }
 
-.description h2 {
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-.description p {
-    font-size: 0.8rem;
-}
 .des-new-menu {
-    font-size: 1.2rem;
+    font-size: 2rem;
+    line-height: 2;
 }
 
 .main-text {
@@ -151,7 +145,7 @@ body {
 .link-text {
     font-family: var(--secondary-font);
     color: var(--text-color);
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-decoration: none;
 }
 
@@ -163,6 +157,11 @@ body {
 .menu-list {
     width: 50%;
     border-radius: 50%;
+    box-shadow: 10px 10px 10px #0e4b2094;
+    transition: 0.3s ease-out;
+}
+.menu-list:hover {
+    border: 6px solid var(--text-hover-color);
 }
 
 #id_login, #id_password,
@@ -231,15 +230,6 @@ body {
     .social {
        text-align: center;
     }
-    .description h2 {
-        font-size: 1.2rem;
-    }
-    .description p {
-        font-size: 1rem;
-    }
-    .des-new-menu {
-        font-size: 1.5rem;
-    }
     .subscribe {
         width: 60%;
     }
@@ -259,17 +249,11 @@ body {
 /* For screen size (>=992px) */
 @media screen and (min-width: 992px) {
    
-    .description h2 {
-        font-size: 1.8rem;
-    }
-    .description p {
-        font-size: 1.4rem;
-    }
-    .des-new-menu {
-        font-size: 2.2rem;
-    }
     .about-text {
         font-size: 0.8rem;
+    }
+    .title {
+        margin-top: 30px;
     }
 }
 

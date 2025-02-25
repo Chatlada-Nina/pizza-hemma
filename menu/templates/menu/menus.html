@@ -4,20 +4,37 @@
 
 {% block content %}
 
-<div class="container-fluid menu-page">
+<div class="container menu-page">
+    <div class="container my-4">
     <div class="row justify-content-center">
-        <div class="col text-center my-4">
-            <h2>Menu</h2>
-            <hr>
+        <div class="text-center my-4">
+            <h2 class="main-text mb-3">Our Menu🍕</h2>
         </div>
+        <div class="col-12 col-md-3 text-center">
+            <a class="link-text" href="{% url 'all_menus' %}?menu_list=pizza"><img class="menu-list" src="{% static 'images/pizza.png' %}" alt="pizza">
+            <p class="mt-3">Pizza</p></a>
+        </div>
+        <div class="col-12 col-md-3 text-center">
+            <a class="link-text" href="{% url 'all_menus' %}?menu_list=appetizer"><img class="menu-list" src="{% static 'images/appetizer.png' %}" alt="pizza">
+            <p class="mt-3">Appetizer</p></a>
+        </div>
+        <div class="col-12 col-md-3 text-center">
+            <a class="link-text" href="{% url 'all_menus' %}?menu_list=drinks"><img class="menu-list" src="{% static 'images/drinks.png' %}" alt="pizza">
+            <p class="mt-3">Drinks</p></a>
+        </div>
+        <div class="col-12 col-md-3 text-center">
+            <a class="link-text" href="{% url 'all_menus' %}?menu_list=pizza,appetizer,drinks"><img class="menu-list" src="{% static 'images/logo.png' %}" alt="all menu">
+            <p class="mt-3">All menu</p></a>
+        </div>
+    </div><hr>
     </div>
+
     <div class="row justify-content-center">
         <div class="menu-container col-10 off-set-1">
-            <div class="row mt-1 mb-2"></div>
             <div class="row">
                 {% for menu in menus %}
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 my-3">
-                        <div class="card h-100 border-0">
+                        <div class="card h-100 border-0 shadow">
                             {% if menu.image %}
                             <div>
                                 <img src="{{ menu.image.url }}" alt="{{ menu.name }}" class="card-img-top img-fluid">
@@ -28,13 +45,13 @@
                             </div>
                             {% endif %}
                             <div class="card-body pb-0">
-                                <h4 class="mb-0">{{ menu.name }}</h4>
-                                <p>{{ menu.description }}</p>
+                                <h5 class="main-text my-3">{{ menu.name }}</h5>
+                                <p class="sub-text">{{ menu.description }}</p>
                             </div>
                             <div class="card-footer pt-0 border-0 text-left">
                                 <div class="row">
                                     <div class="col">
-                                        <p class="lead mb-0 text-left font-weight-bold">{{ menu.price|floatformat:0 }} Sek</p>
+                                        <p class="lead mb-0 text-left sub-text">{{ menu.price|floatformat:0 }} Sek</p>
                                     </div>
                                 </div>
                             </div>
