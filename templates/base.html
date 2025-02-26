@@ -88,16 +88,34 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="" href="">Contact</a>
             </li>
-            {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" aria-current="" href="">
-                <i class="fa-solid fa-circle-user"></i> Logout</a>
+              <a class="nav-link" aria-current="" href="{% url 'view_cart' %}" title="cart"><i class="fa-solid fa-cart-shopping"></i>
+                <span class="quantity">
+                {% if quantity %}
+                  {{ quantity }}
+                {% else %}
+                  0
+                {% endif %}
+                </span>
+              </a>
             </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" aria-current="" href=""></a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="account"><i class="fa-solid fa-circle-user"></i></a>
+              <ul class="dropdown-menu">
+                {% if user.is_authenticated %}
+                <li>
+                  <a class="dropdown-item" aria-current="" href="#">My prfile</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" aria-current="" href="#">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                  <a class="dropdown-item" aria-current="" href="#">Login</a>
+                </li>
+                {% endif %}
+              </ul>
             </li>
-            {% endif %}
             <li class="nav-item">
               <a class="btn-order" aria-current="" href="">ORDER HERE</a>
             </li>

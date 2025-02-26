@@ -55,6 +55,19 @@ body {
     font-size: 1.5rem;
 }
 
+.quantity {
+    font-size: 0.7rem;
+    color: var(--button-text-color);
+}
+
+.dropdown-item, .fa-circle-user {
+    color: var(--text-color);
+}
+
+.dropdown-item:hover {
+    color: var(--text-hover-color);
+}
+
 .btn-order {
     border: 1px solid var(--button-bg-color);
     font-family: var(--primary-font);
