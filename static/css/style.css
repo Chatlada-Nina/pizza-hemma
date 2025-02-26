@@ -16,7 +16,8 @@
 /* Global styles */
 body {
     background-color: var(--background-color);
-    color: var(--text-color); 
+    color: var(--text-color);
+    margin-top: 186px;
 }
 
 
@@ -95,7 +96,6 @@ body {
 
 .banner {
     width: 100%;
-    margin-top: 186px;
     animation-name: fadein;
     animation-duration: 4s;
 }
@@ -125,11 +125,6 @@ body {
 
 .main-text, .sub-text {
     color: var(--text-color);
-}
-
-.all-content {
-    margin-top: 180px;
-    margin-bottom: 50px;
 }
 
 .btn-link {
@@ -195,17 +190,9 @@ body {
     width: 100%;
 }
 
-.about-text {
-    padding-top: 30px;
-    padding-bottom: 50px;
-}
-
 
 /*------ Menu page ------- */
 
-.menu-page {
-    margin-top: 186px;
-}
 
 .btt-button {
     height: 42px;
@@ -226,7 +213,7 @@ body {
 }
 
 
-/* Footer */
+/* ------- Footer -------- */
 
 #footer {
     background-color: var(--nav-color);
@@ -253,7 +240,7 @@ body {
 }
 
 
-/* Media Queries */
+/*--------------- Media Queries ------------------ */
 
 
 /* For screen size (<=768px) */
@@ -267,7 +254,7 @@ body {
 }
 
 /* For screen size (>768px) */
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
     .social {
        text-align: center;
     }
@@ -275,7 +262,6 @@ body {
         width: 60%;
     }
     .about-text {
-        margin-top: 186px;
         font-size: 0.6rem;
     }
 }
