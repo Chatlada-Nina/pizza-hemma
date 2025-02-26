@@ -8,7 +8,7 @@
     --text-hover-color: #0e4b20;
     --button-bg-color: rgba(244, 73, 73, 0.153);
     --button-text-color:#d52b0c;
-    --button-hover-color: #d52b0c;
+    --button-hover-color: #f7593d;
     --button-text-hover-color:#fff;
 }
 
@@ -193,7 +193,6 @@ body {
 
 /*------ Menu page ------- */
 
-
 .btt-button {
     height: 42px;
     width: 42px;
@@ -210,6 +209,19 @@ body {
 }
 .btt-link:hover {
     color: var(--button-text-hover-color);
+}
+
+.btn-cart {
+    background: url(../images/cart-icon.svg) no-repeat right;
+    padding-right: 15px;
+    background-size: 15px;
+    background-color: var(--button-text-color);
+    color: var(--button-text-hover-color);
+    font-family: var(--secondary-font);
+    border-right: 7px solid var(--button-text-color);
+}
+.btn-cart:hover {
+    color: var(--nav-color);
 }
 
 
