@@ -93,8 +93,8 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="" href="{% url 'view_cart' %}" title="cart"><i class="fa-solid fa-cart-shopping"></i>
                 <span class="quantity">
-                {% if quantity %}
-                  {{ quantity }}
+                {% if item_count %}
+                  {{ item_count }}
                 {% else %}
                   0
                 {% endif %}
