@@ -5,7 +5,7 @@
 <div class="container my-4">
     <div class="row">
         <div class="col">
-            <h2 class="main-text">Your order</h2>
+            <h2 class="main-text my-4">Your order</h2>
         </div>
         <hr>
     </div>
@@ -14,7 +14,62 @@
         <div class="col sub-text">
             {% if cart_items %}
                 <div class="table-responsive rounded">
-                    {{ cart_items }}
+                    <table class="table table-sm table-borderless">
+                        <thead class="fs-6">
+                            <tr class="sub-text">
+                                <th scope="col">Order Information</th>
+                                <th scope="col"></th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+
+                        {% for item in cart_items %}
+                            <tr class="sub-text">
+                                <td class="p-3">
+                                    <img class="img-cart rounded" src="{{ item.menu.image.url }}" alt="{{ item.menu.name }}">
+                                </td>
+                                <td class="py-3">
+                                    <p class="my-0"><strong>{{ item.menu.name }}</strong></p>
+                                </td>
+                                <td class="py-3">
+                                    <p class="my-0">{{ item.menu.price|floatformat:0 }}</p>
+                                </td>
+                                <td class="py-3">
+                                    <p class="my-0">{{ item.quantity }}</p>
+                                </td>
+                                <td class="py-3">
+                                    <p class="my-0">{{ item.menu.price }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr class="sub-text">
+                            <td colspan="5" class="pt-4 total">
+                                <h5>Total: <strong>{{ total }}</strong> sek</h5>
+                                <h5>Qty: {{ item_count }}</h5>
+                                {% if free_delivery_delta > 0 %}
+                                <p class="mb-1 text-danger">
+                                    Free delivery by spending just <strong>{{ free_delivery_delta }}</strong> more!
+                                </p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="total">
+                                <a href="{% url 'all_menus' %}" class="btn-link mt-4">
+                                    <span>
+                                        <i class="fa-solid fa-angles-left"></i>
+                                    </span>
+                                    <span class="">Order more</span>
+                                </a> <br>
+                                <a href="" class="btn btn-order mt-2">
+                                    <span class="">Checkout</span>
+                                    <span><i class="fa-solid fa-lock"></i></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             {% else %}
                 <p class="lead mb-5">The cart is empty.</p>

@@ -225,6 +225,20 @@ body {
 }
 
 
+
+/* ------- Cart Page -------- */
+
+.img-cart {
+    width: 70px;
+    height: 70px;
+}
+
+.total {
+    text-align: end;
+}
+
+
+
 /* ------- Footer -------- */
 
 #footer {
