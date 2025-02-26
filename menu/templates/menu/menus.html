@@ -62,4 +62,22 @@
         </div>
     </div>
 </div>
+
+<!-- This Back to top button was learned from Boutique Ado project - Code Institute and modified to suit the project. -->
+<div class="btt-button rounded-0 border border">
+    <a class="btt-link d-flex h-100">
+        <i class="fas fa-arrow-up mx-auto my-auto"></i>
+    </a>
+</div>
+
 {% endblock content %}
+
+<!-- Back to top button handle click function was learned from Boutique Ado project - Code Institute -->
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('.btt-link').click(function(e){
+            window.scrollTo(0,0)
+        })
+    </script>
+{% endblock %}

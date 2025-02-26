@@ -194,6 +194,24 @@ body {
     margin-top: 186px;
 }
 
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 70px;
+    right: 10px;
+    background-color: var(--text-hover-color);
+}
+
+.btt-link {
+    cursor: pointer;
+    color: var(--button-text-hover-color);
+    text-decoration: none;
+}
+.btt-link:hover {
+    color: var(--button-text-hover-color);
+}
+
 
 /* Footer */
 
