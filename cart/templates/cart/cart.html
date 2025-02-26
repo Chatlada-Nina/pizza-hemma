@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="container my-4">
     <div class="row">
         <div class="col">
             <h2 class="main-text">Your order</h2>
@@ -11,16 +11,16 @@
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col sub-text">
             {% if cart_items %}
-                <div class="table-responsive rounded sub-text"></div>
+                <div class="table-responsive rounded"></div>
             {% else %}
-                <p class="lead mb-5">You cart is empty.</p>
+                <p class="lead mb-5">The cart is empty.</p>
                 <a href="{% url 'all_menus' %}" class="btn-link">
                     <span>
                         <i class="fa-solid fa-angles-left"></i>
                     </span>
-                    <span>See Menu 🍕</span>
+                    <span> See Our Menu</span>
                 </a>
             {% endif %}
         </div>
