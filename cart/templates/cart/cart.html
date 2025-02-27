@@ -50,7 +50,11 @@
                                 <h5>Qty: {{ item_count }}</h5>
                                 {% if free_delivery_delta > 0 %}
                                 <p class="mb-1 text-danger">
-                                    Free delivery by spending just <strong>{{ free_delivery_delta }}</strong> more!
+                                    **Delivery service available for Order over 500sek | Spending just <strong>{{ free_delivery_delta }}</strong> more! or<br>Checkout now and pickup at the restaurant.
+                                </p>
+                                {% else %}
+                                <p class="mb-1 text-secondary">
+                                    Delivery service available!<br> Please choose the Delivery service or Pickup at the restaurant on the Checkout page
                                 </p>
                                 {% endif %}
                             </td>
