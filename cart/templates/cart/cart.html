@@ -37,7 +37,28 @@
                                     <p class="my-0">{{ item.menu.price|floatformat:0 }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">{{ item.quantity }}</p>
+                                    <form class="form form-update" method="POST" action="{% url 'update_cart' item.menu_id %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <button class="decrement-qty btn btn-sm btn-order" data-item_id="{{ item.menu_id }}" id="decrement-qty_{{ item.menu_id }}">
+                                                        <span>
+                                                            <i class="fas fa-minus fa-sm"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <input type="number" class="form-control form-control-sm qty_input" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.menu_id }}" id="id_qty_{{ item.menu_id }}">
+                                                <div class="input-group-append">
+                                                    <button class="increment-qty btn btn-sm btn-order" data-item_id="{{ item.menu_id }}" id="increment-qty_{{ item.menu_id }}">
+                                                        <span><i class="fas fa-plus"></i></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </form>
+                                    <a class="update-link text-success"><small>Update</small></a>
+                                    <a class="remove-item text-danger" id="remove_{{ item.menu_id }}"><small>Remove</small></a>
                                 </td>
                                 <td class="py-3">
                                     <p class="my-0">{{ item.menu.price }}</p>
@@ -89,4 +110,33 @@
     
 </div>
 
+{% endblock content %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'menu/includes/quantity_input_script.html' %} 
+
+    <!-- This Script is learned from Boutique Ado project on CI Learning plateform and modified as the project needed -->
+
+    <script type="text/javascript">
+        // Update quantity on click
+        $('.update-link').click(function(e) {
+            var form = $(this).prev('.form-update');
+            form.submit();
+        })
+
+        // Remove item and reload on click
+        $('.remove-item').click(function(e) {
+            e.preventDefault();
+            var csrfToken = "{{ csrf_token }}";
+            var itemId = $(this).attr('id').split('remove_')[1];
+            var url = `/cart/remove/${itemId}/`;
+            var data = {'csrfmiddlewaretoken': csrfToken};
+
+            $.post(url, data)
+            .done(function() {
+                location.reload();
+            })
+        })
+    </script>
 {% endblock %}

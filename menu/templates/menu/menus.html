@@ -52,7 +52,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <p class="lead mb-0 text-left sub-text">{{ menu.price|floatformat:0 }} Sek</p>
-                                        <form class="form" action="{% url 'add_to_cart' menu.id %}" method="GET">
+                                        <form class="form" action="{% url 'add_to_cart' menu.id %}" method="POST">
                                             {% csrf_token %}
                                             <div class="form-row">
                                                 <div class="col-12">
