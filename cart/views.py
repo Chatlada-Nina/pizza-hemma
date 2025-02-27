@@ -7,7 +7,6 @@ def view_cart(request):
     """
     A view that render the cart contents page.
     """
-
     return render(request, 'cart/cart.html')
 
 def add_to_cart(request, menu_id):
@@ -55,7 +54,6 @@ def remove_from_cart(request, menu_id):
             cart.pop(menu_id)
 
         request.session['cart'] = cart
-        print(cart)
         return HttpResponse(status=200)
     
     except Exception as e:

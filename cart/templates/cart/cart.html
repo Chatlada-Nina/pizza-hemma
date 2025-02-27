@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cart_tools %}
 
 {% block content %}
 <div class="container my-4">
@@ -21,7 +22,7 @@
                                 <th scope="col"></th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Qty</th>
-                                <th scope="col">Total</th>
+                                <th scope="col">Sub total</th>
                             </tr>
                         </thead>
 
@@ -61,7 +62,7 @@
                                     <a class="remove-item text-danger" id="remove_{{ item.menu_id }}"><small>Remove</small></a>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">{{ item.menu.price }}</p>
+                                    <p class="my-0">{{ item.menu.price | calc_subtotal:item.quantity }}</p>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -135,7 +136,8 @@
 
             $.post(url, data)
             .done(function() {
-                location.reload();
+                console.log("Item removed successfully")
+                location.reload(true);
             })
         })
     </script>
