@@ -59,13 +59,13 @@
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
-                                                                <button class="decrement-qty btn btn-order" data-item_id="{{ menu.id }}" id="decrement-qty_{{ menu.id }}">
+                                                                <button class="decrement-qty btn btn-order" data-menu_id="{{ menu.id }}" id="decrement-qty_{{ menu.id }}">
                                                                     <span><i class="fas fa-minus"></i></span>
                                                                 </button>
                                                             </div>
-                                                            <input type="number" class="form-control qty_input text-center sub-text" name="quantity" value="1" min="1" max="99" data-item_id="{{ menu.id }}" id="id_qty_{{ menu.id }}">
+                                                            <input type="number" class="form-control qty_input text-center sub-text" name="quantity" value="1" min="1" max="99" data-menu_id="{{ menu.id }}" id="id_qty_{{ menu.id }}">
                                                             <div class="input-group-append">
-                                                                <button class="increment-qty btn btn-order" data-item_id="{{ menu.id }}" id="increment-qty_{{ menu.id }}">
+                                                                <button class="increment-qty btn btn-order" data-menu_id="{{ menu.id }}" id="increment-qty_{{ menu.id }}">
                                                                     <span><i class="fas fa-plus"></i></span>
                                                                 </button>
                                                             </div>
@@ -74,7 +74,7 @@
                                                 </div>
 
                                                 <div class="col-12 my-2">
-                                                    <input type="submit" class="btn btn-cart rounded-0" value="Add to cart  ">
+                                                    <input type="submit" class="btn btn-cart rounded-0" data-menu_id="{{ menu.id }}" value="Add to cart  ">
                                                 </div>
                                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                             </div>

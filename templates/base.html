@@ -1,12 +1,11 @@
 {% load static %}
-
-{% url "home" as home_url %}
-
+{% url "homepage" as home_url %}
 {% url "about" as about_url %}
-
-{% url "menu" as menu_url %}
-
-{% url "cart" as cart_url %}
+{% url "all_menus" as menu_url %}
+{% url "view_cart" as cart_url %}
+{% url "account_login" as login_url %} 
+{% url "account_logout" as logout_url %}
+{% url "account_signup" as signup_url %}
 
 
 <!DOCTYPE html>
@@ -55,7 +54,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'homepage' %}"
+        <a class="navbar-brand" href="{{ home_url }}"
           ><img
             class="logo"
             src="{% static 'images/logo.png' %}"
@@ -76,10 +75,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link {% if request.path == about_url %}active{% endif %}" aria-current="page" href="{% url 'about' %}">About us</a>
+              <a class="nav-link {% if request.path == about_url %}active{% endif %}" aria-current="page" href="{{ about_url }}">About us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if request.path == menu_url %}active{% endif %}" aria-current="page" href="{% url 'all_menus' %}">Menu</a>
+              <a class="nav-link {% if request.path == menu_url %}active{% endif %}" aria-current="page" href="{{ menu_url }}">Menu</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="" href="">Member Club</a>
@@ -91,7 +90,7 @@
               <a class="nav-link" aria-current="" href="">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="" href="{% url 'view_cart' %}" title="cart"><i class="fa-solid fa-cart-shopping"></i>
+              <a class="nav-link {% if request.path == cart_url %}active" aria-current="page{% endif %}" href="{{ cart_url }}" title="cart"><i class="fa-solid fa-cart-shopping"></i>
                 <span class="quantity">
                 {% if item_count %}
                   {{ item_count }}
@@ -109,17 +108,20 @@
                   <a class="dropdown-item" aria-current="" href="#">My prfile</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" aria-current="" href="#">Logout</a>
+                  <a class="nav-link dropdown-item {% if request.path == logout_url %}active" aria-current="page{% endif %}" href="{{ logout_url }}">Logout</a>
                 </li>
                 {% else %}
                 <li>
-                  <a class="dropdown-item" aria-current="" href="#">Login</a>
+                  <a class="nav-link dropdown-item {% if request.path == login_url %}active" aria-current="page{% endif %}" href="{{ login_url }}">Login</a>
+                </li>
+                <li>
+                  <a class="nav-link dropdown-item {% if request.path == signup_url %}active" aria-current="page{% endif %}" href="{{ signup_url }}">Register</a>
                 </li>
                 {% endif %}
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="btn-order" aria-current="" href="">ORDER HERE</a>
+            <li class="nav-item my-2">
+              <a class="btn-order" aria-current="" href="{{ menu_url }}">ORDER HERE</a>
             </li>
           </ul>
         </div>

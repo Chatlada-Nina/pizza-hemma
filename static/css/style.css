@@ -17,7 +17,7 @@
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    margin-top: 186px;
+    margin-top: 156px;
 }
 
 
@@ -25,7 +25,7 @@ body {
 
 .logo {
     padding-left: 20px;
-    max-width: 180px;
+    max-width: 150px;
 }
 
 .navbar {
