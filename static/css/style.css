@@ -225,7 +225,6 @@ body {
 }
 
 
-
 /* ------- Cart Page -------- */
 
 .img-cart {
@@ -240,6 +239,23 @@ body {
 .update-link, .remove-item {
     cursor: pointer;
 }
+
+
+/* ------- Reviews page -------- */
+.review-img {
+    max-width: 250px;
+    object-fit: cover;
+}
+
+.rating {
+    display: inline-flex;
+    border: 1px solid sandybrown;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: sandybrown;
+    color: white;
+}
+
 
 
 /* ------- Footer -------- */

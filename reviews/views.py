@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 from .models import Review
 from .forms import ReviewForm
 
@@ -7,7 +8,7 @@ def reviews(request):
     """
     Render the reviews page
     """
-    review = Review.objects.all().first()
+    reviews = Review.objects.filter(approved=True).order_by('created_on')
 
     if request.method == 'POST':
         review_form = ReviewForm(data=request.POST)
@@ -15,13 +16,17 @@ def reviews(request):
             review = review_form.save(commit=False)
             review.author = request.user
             review.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Your review submitted and awaiting approval'
+            )
 
     review_form = ReviewForm()
 
     return render(
         request,
         "reviews/reviews.html",
-        {"review": review,
+        {"reviews": reviews,
          "review_form": review_form,
          },
     )
