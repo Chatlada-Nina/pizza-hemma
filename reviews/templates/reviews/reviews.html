@@ -3,10 +3,31 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-6">
-            <h2 class="main-text">Our Customer said:</h2>
+<div class="container-fluid mt-0">
+    <div class="row customer-img">
+        <div class="layout-img">
+            <img src="{% static 'images/review1.jpg' %}" alt="customers-images">
+            <img src="{% static 'images/review2.jpg' %}" alt="customers-images">
+        </div>
+        <div class="layout-img">
+            <img src="{% static 'images/review3.jpg' %}" alt="customers-images">
+            <img src="{% static 'images/review4.jpg' %}" alt="customers-images">
+        </div>
+        <div class="layout-img">
+            <img src="{% static 'images/review5.jpg' %}" alt="customers-images">
+            <img src="{% static 'images/review6.jpg' %}" alt="customers-images">
+        </div>
+        <div class="layout-img">
+            <img src="{% static 'images/review7.jpg' %}" alt="customers-images">
+            <img src="{% static 'images/review8.jpg' %}" alt="customers-images">
+        </div>
+    </div>
+</div>
+
+<div class="container my-4">
+        <div class="row justify-content-center"> 
+        <div class="col-12 col-md-6 my-4">
+            <h2 class="main-text">Our Customer said :</h2>
             <div class="card-body sub-text">
                 <!-- A for loop inside the empty control tags
                   to iterate through each review in reviews -->
@@ -34,10 +55,10 @@
         </div>
 
         <!-- Creating New Reviews -->
-        <div class="col-12 col-md-6 my-4">
+        <div class="col-12 col-md-6 my-2">
             <div class="card-body">
                 {% if user.is_authenticated %}
-                <h4 class="main-text">Write a review:</h4>
+                <h2 class="main-text">Write a review:</h2>
                 <p>Reviewing by: <strong>{{ user.username }}</strong></p>
                 <form id="reviewForm" method="POST">
                     {{ review_form | crispy }}

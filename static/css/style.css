@@ -242,6 +242,26 @@ body {
 
 
 /* ------- Reviews page -------- */
+.customer-img {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.layout-img {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.layout-img img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    animation-name: fadein;
+    animation-duration: 4s;
+}
+
 .review-img {
     max-width: 250px;
     object-fit: cover;
@@ -295,6 +315,10 @@ body {
     }
     .title {
         font-size: 1.2rem;
+    }
+    .layout-img {
+        flex: 50%;
+        max-width: 50%;
     }
 }
 
