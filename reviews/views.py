@@ -8,7 +8,16 @@ from .forms import ReviewForm
 def reviews(request):
     """
     Render the reviews page
+
+    **Context**
+    ``reviews``
+        All reviews that are approved by Admin.
+    ``review_form``
+        An instance of :form:`reviews.ReviewForm`.
+     **Template:**
+    :template:`reviews/reviews.html`
     """
+
     reviews = Review.objects.filter(approved=True).order_by('created_on')
 
     if request.method == 'POST':
@@ -44,7 +53,10 @@ def review_edit(request, review_id):
         An instance of :model:`reviews.Review`.
     ``review_form``
         An instance of :form:`reviews.ReviewForm`.
+     **Template:**
+    :template:`reviews/review_edit.html`
     """
+
     review = get_object_or_404(Review, pk=review_id)
 
     if request.method == "POST":
@@ -71,3 +83,22 @@ def review_edit(request, review_id):
          },
     )
 
+
+def review_delete(request, review_id):
+    """
+    Delete an individual review.
+
+    **Context**
+    ``review``
+        An instance of :model:`reviews.Review`.
+    """
+    review = get_object_or_404(Review, pk=review_id)
+
+    if review.author == request.user:
+        review.delete()
+        messages.add_message(request, messages.SUCCESS, 'Review deleted!')
+    else:
+        messages.add_message(request, messages.ERROR,
+                             'You can only delete your own reviews!')
+       
+    return HttpResponseRedirect(reverse("reviews"))
