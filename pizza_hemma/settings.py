@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'menu',
     'cart',
     'reviews',
+    'checkout',
 ]
 
 SITE_ID = 1
@@ -181,7 +182,8 @@ STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-FREE_DELIVERY_THRESHOLD = 500
+FREE_DELIVERY_THRESHOLD = 800
+STANDARD_DELIVERY_PERCENTAGE = 20
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
