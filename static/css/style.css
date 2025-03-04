@@ -267,6 +267,10 @@ body {
     object-fit: cover;
 }
 
+#reviewForm img {
+    max-width: 150px;
+}
+
 .rating {
     display: inline-flex;
     border: 1px solid sandybrown;

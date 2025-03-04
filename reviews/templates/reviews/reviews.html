@@ -32,11 +32,11 @@
                 <!-- A for loop inside the empty control tags
                   to iterate through each review in reviews -->
                 {% for review in reviews %}
-                <p class="rating"><i class="fa-solid fa-star"></i>  {{ review.rating }}</p>
+                <p id="rating{{ review.id }}" class="rating"><i class="fa-solid fa-star"></i> {{ review.rating }}</p>
                 <div class="fst-italic" id="review{{ review.id }}">
                     "{{ review.body }}"
                 </div> 
-                <div class="p-2 {% if review.author == user %}faded{% endif %}">
+                <div class="p-2 {% if review.author == user %} faded{% endif %}">
                     <p class="fw-bold text-capitalize">
                         {{ review.author }}
                         <span class="fw-light">
@@ -45,8 +45,15 @@
                     </p>
                     {% if review.image %}
                     <div>
-                        <img class="review-img" src="{{ review.image.url }}" alt="{{ review.author }}">
+                        <img id="image{{ review.id }}" class="review-img" src="{{ review.image.url }}" alt="{{ review.author }}">
                     </div>
+                    {% endif %}
+
+                    {% if not review.approved and review.author == user %}
+                    <p class="approval">This review is waiting approval</p>
+                    {% endif %}
+                    {% if user.is_authenticated and review.author == user %}
+                    <button class="btn btn-edit btn-link" data-review_id="{{ review.id }}">Edit</button>
                     {% endif %}
                 </div> <hr>
                 <!-- For loop ends here -->
@@ -60,7 +67,7 @@
                 {% if user.is_authenticated %}
                 <h2 class="main-text">Write a review:</h2>
                 <p>Reviewing by: <strong>{{ user.username }}</strong></p>
-                <form id="reviewForm" method="POST">
+                <form id="reviewForm" method="POST" enctype="multipart/form-data">
                     {{ review_form | crispy }}
                     {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-order">Submit</button>
@@ -75,3 +82,7 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/reviews.js' %}"></script>
+{% endblock %}
