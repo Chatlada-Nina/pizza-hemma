@@ -186,8 +186,12 @@ STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_pizza'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_pizza')
 
+# Stripe
 FREE_DELIVERY_THRESHOLD = 800
 STANDARD_DELIVERY_PERCENTAGE = 20
+STRIPE_CURRENCY = 'sek'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

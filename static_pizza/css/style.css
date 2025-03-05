@@ -177,7 +177,7 @@ body {
 #id_password1, #id_password2,
 #id_full_name, #id_phone_number,
 #id_delivery_method, #id_address,
-#id_postcode {
+#id_postcode, .card-field {
     border: 1px solid var(--text-color);
     color: var(--text-color);
     background: none;
