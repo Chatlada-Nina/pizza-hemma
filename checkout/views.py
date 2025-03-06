@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
 from .forms import OrderForm
-from.models import Order, OrderLineMenu
+from .models import Order, OrderLineMenu
 from menu.models import MenuItem
 from cart.contexts import cart_contents
 
 import stripe
 
 # Create your views here.
+
 
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -21,9 +22,17 @@ def checkout(request):
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
             'phone_number': request.POST['phone_number'],
+            'delivery_method': request.POST.get('delivery_method', 'delivery'),
             'address': request.POST['address'],
             'postcode': request.POST['postcode'],
         }
+
+        # Print form data for debugging
+        print('Form Data:', form_data)
+
+        # Save delivery method in session
+        request.session['delivery_method'] = form_data['delivery_method']
+
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save()
@@ -33,13 +42,13 @@ def checkout(request):
                     if isinstance(item_data, int):
                         order_line_menu = OrderLineMenu(
                             order=order,
-                            item=item,
+                            menu=item,
                             quantity=item_data,
                         )
                         order_line_menu.save()
                 except MenuItem.DoesNotExist:
                     messages.error(request, (
-                        "One of the menus in your cart wasn't found in our database. "
+                        "One of the menus in your cart wasn't found in our database."
                         "Please call us for assistance!")
                     )
                     order.delete()
@@ -50,6 +59,15 @@ def checkout(request):
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
+            
+            # Return to checkout page with the form data and errors
+            template = 'checkout/checkout.html'
+            context = {
+                'order_form': order_form,
+                'stripe_public_key': stripe_public_key,
+                'client_secret': stripe.api_key,
+            }
+            return render(request, template, context)
 
     else:
         cart = request.session.get('cart', {})
@@ -79,7 +97,7 @@ def checkout(request):
         }
 
         return render(request, template, context)
-    
+
 
 def checkout_success(request, order_number):
     """
@@ -90,7 +108,7 @@ def checkout_success(request, order_number):
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
-    
+
     if 'cart' in request.session:
         del request.session['cart']
 

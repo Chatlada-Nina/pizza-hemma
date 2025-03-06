@@ -72,3 +72,34 @@ form.addEventListener('submit', function(ev) {
         }
     });
 });
+
+
+// Update delivery cost and grand total based on delivery method
+function updateTotals() {
+    const deliveryMethod = document.querySelector('select[name="delivery_method"]').value;
+    const totalElement = document.getElementById('total');
+    const deliveryCostElement = document.getElementById('delivery-cost');
+    const grandTotalElement = document.getElementById('grand-total');
+    const chargedAmountElement = document.getElementById('charged-amount');
+
+    let total = parseFloat(totalElement.textContent);
+    let deliveryCost = 0;
+    
+    if (deliveryMethod === 'delivery') {
+        // Calculate delivery cost based on the conditions
+        if (total < window.deliveryData.freeDeliveryThreshold) {
+            deliveryCost = total * window.deliveryData.standardDeliveryPercentage / 100;
+        } else {
+            deliveryCost = 0;
+        }
+    }
+
+    const grandTotal = total + deliveryCost;
+    
+    deliveryCostElement.textContent = deliveryCost.toFixed(2);
+    grandTotalElement.textContent = grandTotal.toFixed(2);
+    chargedAmountElement.textContent = grandTotal.toFixed(2) + 'sek';
+}
+
+document.querySelector('select[name="delivery_method"]').addEventListener('change', updateTotals);
+document.addEventListener('DOMContentLoaded', updateTotals);

@@ -47,7 +47,6 @@ class Order(models.Model):
                 self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
             else:
                 self.delivery_cost = 0
-
         else:
             self.delivery_cost = 0
         
@@ -55,7 +54,7 @@ class Order(models.Model):
         self.save()
 
     def __str__(self):
-        return self.order_number
+        return str(self.order_number) # Convert order_number to a string.
 
 
 class OrderLineMenu (models.Model):

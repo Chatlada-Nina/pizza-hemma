@@ -8,7 +8,7 @@ def cart_contents(request):
     cart_items = []
     total = 0
     item_count = 0
-    delivery = 0
+    delivery_cost = 0
     cart = request.session.get('cart', {})
 
     for menu_id, quantity in cart.items():
@@ -21,23 +21,29 @@ def cart_contents(request):
             'menu': menu,
         })
 
-    if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
-        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+    # Check the delivery method and adjust the delivery cost
+    delivery_method = request.session.get('delivery_method', 'delivery')
+    if delivery_method == 'delivery':
+        if total < settings.FREE_DELIVERY_THRESHOLD:
+            delivery_cost = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+            free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+        else:
+            delivery_cost = 0
+            free_delivery_delta = 0
     else:
-        delivery = 0
+        delivery_cost = 0
         free_delivery_delta = 0
 
-    grand_total = delivery + total
-
+    grand_total = delivery_cost + total
 
     context = {
         'cart_items': cart_items,
         'total': total,
         'item_count': item_count,
-        'delivery': delivery,
+        'delivery_cost': delivery_cost,
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
+        'standard_delivery_percentage': settings.STANDARD_DELIVERY_PERCENTAGE,
         'grand_total': grand_total,
     }
 

@@ -53,9 +53,10 @@
                     <p class="my-0 fs-5"><strong>Grand Total:</strong></p>
                 </div>
                 <div class="col-3">
-                    <p class="my-0 fs-5"><strong>{{ total | floatformat:2 }}</strong></p>
-                    <p class="my-0 fs-5"><strong>{{ delivery | floatformat:2 }}</strong></p>
-                    <p class="my-0 fs-5 text-decoration-underline"><strong>{{ grand_total | floatformat:2 }}</strong></p>
+                    <p id="total" class="my-0 fs-5"><strong>{{ total | floatformat:2 }}</strong></p>
+                    
+                    <p id="delivery-cost" class="my-0 fs-5"><strong>{{ delivery_cost | floatformat:2 }}</strong></p>
+                    <p id="grand-total" class="my-0 fs-5 text-decoration-underline"><strong>{{ grand_total | floatformat:2 }}</strong></p>
                 </div>
              </div>
         </div>
@@ -106,7 +107,7 @@
                 </button>
                 <p class="small text-danger my-0">
                     <span><i class="fa-solid fa-circle-exclamation"></i></span>
-                    <span>Your card will be charged <strong>{{ grand_total|floatformat:2 }}sek</strong></span>
+                    <span>Your card will be charged <strong id="charged-amount">{{ grand_total|floatformat:2 }}sek</strong></span>
                 </p>
             </div>
            </form>
@@ -122,4 +123,14 @@
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}
 {{ client_secret|json_script:"id_client_secret" }}
 <script src="{% static 'js/stripe_elements.js' %}"></script>
+
+<!-- Include variables as JSON data and ensure they are correctly parsed in JavaScript -->
+<script type="application/json" id="free_delivery_threshold">{{ free_delivery_threshold }}</script>
+<script type="application/json" id="standard_delivery_percentage">{{ standard_delivery_percentage }}</script>
+<script>
+    window.deliveryData = {
+        freeDeliveryThreshold: JSON.parse(document.getElementById('free_delivery_threshold').textContent),
+        standardDeliveryPercentage: JSON.parse(document.getElementById('standard_delivery_percentage').textContent)
+    };
+</script>
 {% endblock %}
