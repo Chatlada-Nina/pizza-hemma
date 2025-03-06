@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!---- Learned from Boutique Ado project - CI Learning Platform and modified as the project needed ----->
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col">
+            <h2 class="main-text my-4">Thank you</h2>
+            <p class="sub-text">Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-7"></div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-7 text-right">
+            <a href="{% url 'homepage' %}" class="btn btn-order my-2">
+                <span>
+                    <i class="fas fa-gifts"></i>
+                </span>
+                <span class="text-uppercase">Back to our homepage</span>
+            </a>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock content %}
