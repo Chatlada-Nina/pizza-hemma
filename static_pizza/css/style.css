@@ -284,8 +284,26 @@ body {
 }
 
 
-/* ------- Payment Form -------- */
+/* ------- Checkout Page -------- */
 
+#loading-overlay {
+	display: none;
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(6, 159, 82, 0.85);
+    z-index: 9999; /* The z-index of 9999 will make sure it will stay on top of everything */
+}
+
+.loading-spinner {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100%;
+}
 
 
 
