@@ -44,4 +44,17 @@
         handleEnableDisable(menuId);
     })
 
+    // Save scroll position before form submission
+    $('.add-to-cart-form').submit(function() {
+            localStorage.setItem('scrollPosition', $(window).scrollTop());
+        });
+
+    // Restore scroll position after page reload
+    $(document).ready(function() {
+        if (localStorage.getItem('scrollPosition') !== null) {
+            $(window).scrollTop(localStorage.getItem('scrollPosition'));
+            localStorage.removeItem('scrollPosition');
+        }
+    });
+
 </script>

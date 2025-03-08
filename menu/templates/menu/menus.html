@@ -52,7 +52,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <p class="lead mb-2 text-left sub-text">{{ menu.price|floatformat:0 }} Sek</p>
-                                        <form class="form" action="{% url 'add_to_cart' menu.id %}" method="POST">
+                                        <form class="form add-to-cart-form" action="{% url 'add_to_cart' menu.id %}" method="POST">
                                             {% csrf_token %}
                                             <div class="form-row text-center">
                                                 <div class="col-12">
@@ -76,7 +76,7 @@
                                                 <div class="col-12 my-2">
                                                     <input type="submit" class="btn btn-cart rounded-0" data-menu_id="{{ menu.id }}" value="Add to cart  ">
                                                 </div>
-                                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                                <input type="hidden" name="redirect_url" value="{{ request.path }}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}">
                                             </div>
                                         </form>
                                     </div>

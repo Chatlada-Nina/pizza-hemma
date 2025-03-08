@@ -25,7 +25,7 @@ class MenuItem(models.Model):
 
     # Add a Meta class to define order of items
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-id"]
 
     # Display class object as a string to improve readable for admin
     def __str__(self):
