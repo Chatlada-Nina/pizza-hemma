@@ -88,6 +88,7 @@ body {
 
 /* Block Content */
 
+
 /*------ Home page ------- */
 
 .space {
@@ -191,6 +192,15 @@ body {
 
 .subscribe {
     width: 100%;
+}
+
+
+/*------ About page ------- */
+
+.about-img {
+    width: 80%;
+    animation-name: fadein;
+    animation-duration: 4s;
 }
 
 
