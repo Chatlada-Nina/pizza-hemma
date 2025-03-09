@@ -348,6 +348,23 @@ body {
 /*--------------- Media Queries ------------------ */
 
 
+/* For screen size (<=576px) */
+@media screen and (max-width: 576px) {
+    .text-cart, .qty_input {
+        font-size: 0.7rem;
+    }
+    .title-cart, .total {
+        font-size: 0.8rem;
+    }
+    .decrement-qty, .increment-qty {
+        padding: 5%;
+    }
+    .minus, .plus {
+        font-size: 0.4rem;
+    }
+}
+
+
 /* For screen size (<=768px) */
 @media screen and (max-width: 768px) {
     .contact-info, .social {
@@ -359,6 +376,12 @@ body {
     .layout-img {
         flex: 50%;
         max-width: 50%;
+    }
+    .decrement-qty, .increment-qty {
+        padding: 5%;
+    }
+    .minus, .plus {
+        font-size: 0.6rem;
     }
 }
 

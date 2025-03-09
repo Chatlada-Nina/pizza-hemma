@@ -16,7 +16,7 @@
             {% if cart_items %}
                 <div class="table-responsive rounded">
                     <table class="table table-sm table-borderless">
-                        <thead class="fs-6">
+                        <thead class="title-cart">
                             <tr class="sub-text">
                                 <th scope="col">Order Information</th>
                                 <th scope="col"></th>
@@ -27,7 +27,7 @@
                         </thead>
 
                         {% for item in cart_items %}
-                            <tr class="sub-text">
+                            <tr class="sub-text text-cart">
                                 <td class="p-3">
                                     <img class="img-cart rounded" src="{{ item.menu.image.url }}" alt="{{ item.menu.name }}">
                                 </td>
@@ -37,14 +37,14 @@
                                 <td class="py-3">
                                     <p class="my-0">{{ item.menu.price|floatformat:0 }}</p>
                                 </td>
-                                <td class="py-3">
+                                <td class="py-3 text-cart">
                                     <form class="form form-update" method="POST" action="{% url 'update_cart' item.menu_id %}">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <button class="decrement-qty btn btn-sm btn-order" data-item_id="{{ item.menu_id }}" id="decrement-qty_{{ item.menu_id }}">
-                                                        <span>
+                                                        <span class="minus">
                                                             <i class="fas fa-minus fa-sm"></i>
                                                         </span>
                                                     </button>
@@ -52,7 +52,7 @@
                                                 <input type="number" class="form-control form-control-sm qty_input text-center sub-text" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.menu_id }}" id="id_qty_{{ item.menu_id }}">
                                                 <div class="input-group-append">
                                                     <button class="increment-qty btn btn-sm btn-order" data-item_id="{{ item.menu_id }}" id="increment-qty_{{ item.menu_id }}">
-                                                        <span><i class="fas fa-plus"></i></span>
+                                                        <span class="plus"><i class="fas fa-plus"></i></span>
                                                     </button>
                                                 </div>
                                             </div>
