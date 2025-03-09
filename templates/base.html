@@ -4,6 +4,7 @@
 {% url "all_menus" as menu_url %}
 {% url "view_cart" as cart_url %}
 {% url "reviews" as reviews_url %}
+{% url "contact" as contact_url %}
 {% url "account_login" as login_url %} 
 {% url "account_logout" as logout_url %}
 {% url "account_signup" as signup_url %}
@@ -85,7 +86,7 @@
               <a class="nav-link {% if request.path == reviews_url %}active{% endif %}" aria-current="page" href="{{ reviews_url }}">Reviews</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="" href="">Contact</a>
+              <a class="nav-link {% if request.path == contact_url %}active" aria-current="page{% endif %}" href="{{ contact_url }}">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link {% if request.path == cart_url %}active" aria-current="page{% endif %}" href="{{ cart_url }}" title="cart"><i class="fa-solid fa-cart-shopping"></i>
