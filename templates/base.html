@@ -5,6 +5,7 @@
 {% url "view_cart" as cart_url %}
 {% url "reviews" as reviews_url %}
 {% url "contact" as contact_url %}
+{% url "profile" as profile_url %}
 {% url "account_login" as login_url %} 
 {% url "account_logout" as logout_url %}
 {% url "account_signup" as signup_url %}
@@ -104,7 +105,7 @@
               <ul class="dropdown-menu">
                 {% if user.is_authenticated %}
                 <li>
-                  <a class="dropdown-item" aria-current="" href="#">My prfile</a>
+                  <a class="nav-link dropdown-item {% if request.path == profile_url %}active" aria-current="page{% endif %}" href="{{ profile_url }}">My profile</a>
                 </li>
                 <li>
                   <a class="nav-link dropdown-item {% if request.path == logout_url %}active" aria-current="page{% endif %}" href="{{ logout_url }}">Logout</a>
