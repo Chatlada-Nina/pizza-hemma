@@ -6,12 +6,29 @@
 
 <!---- Learned from Boutique Ado project - CI Learning Platform and modified as the project needed ----->
 
-<div class="container my-4">
+<div class="container mb-4">
     <div class="row">
         <div class="col">
-            <h2 class="main-text my-4">My Profile</h2>
+            <h2 class="main-text mb-4">My Profile</h2>
         </div>
         <hr>
-    </div>  
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <p class="sub-text fw-bold">Delivery Information</p>
+            <form class="my-2" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                <button class="btn btn-account">Update Information</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-6">
+            <p class="sub-text fw-bold">Order History</p>
+            {{ orders }}
+        </div>
+    </div>
 </div>
+{{ profile }}
 {% endblock content %}

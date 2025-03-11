@@ -104,6 +104,11 @@
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="account"><i class="fa-solid fa-circle-user"></i></a>
               <ul class="dropdown-menu">
                 {% if user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                <li>
+                <a href="" class="nav-link dropdown-item">My Management</a>
+                </li>
+                {% endif %}
                 <li>
                   <a class="nav-link dropdown-item {% if request.path == profile_url %}active" aria-current="page{% endif %}" href="{{ profile_url }}">My profile</a>
                 </li>
