@@ -12,9 +12,9 @@ class OrderLineMenuAdminInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderLineMenuAdminInline,)
 
-    readonly_fields = ('order_number', 'date', 'delivery_cost', 'order_total', 'grand_total',)
+    readonly_fields = ('order_number', 'date', 'delivery_cost', 'order_total', 'grand_total', 'original_cart', 'stripe_pid',)
     
-    list_display = ('order_number', 'date','full_name', 'delivery_method',  'delivery_cost', 'order_total', 'grand_total',)
+    list_display = ('order_number', 'date','full_name', 'delivery_method',  'delivery_cost', 'order_total', 'grand_total', 'original_cart', 'stripe_pid',)
 
     # Ordered by recent order at the top
     ordering = ('-date',)
