@@ -4,15 +4,15 @@
     {% trans "Email Address" %}
 {% endblock head_title %}
 {% block content %}
-    <h1>{% trans "Email Address" %}</h1>
+    <h1 class="main-text text-center my-3">{% trans "Email Address" %}</h1>
     {% if emailaddresses %}
         {% if current_emailaddress %}
-            <p>
+            <p class="sub-text text-center">
                 {% trans 'The following email address is associated with your account:' %} <a href="mailto:{{ current_emailaddress.email }}">{{ current_emailaddress.email }}</a>
             </p>
         {% endif %}
         {% if new_emailaddress %}
-            <p>
+            <p class="sub-text text-center">
                 {% trans 'Your email address is still pending verification:' %} <a href="mailto:{{ new_emailaddress.email }}">{{ new_emailaddress.email }}</a>
             </p>
             <form method="post" action="{% url 'account_email' %}">

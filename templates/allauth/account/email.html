@@ -5,9 +5,9 @@
 {% block head_title %}{% trans "Email Addresses" %}{% endblock head_title %}
 
 {% block content %}
-    <h1>{% trans "Email Addresses" %}</h1>
+  <h1 class="main-text text-center my-3">{% trans "Email Addresses" %}</h1>
 {% if emailaddresses %}
-<p>{% trans 'The following email addresses are associated with your account:' %}</p>
+<p class="sub-text text-center">{% trans 'The following email addresses are associated with your account:' %}</p>
 
 <form action="{% url 'account_email' %}" class="email_list" method="post">
 {% csrf_token %}

@@ -317,6 +317,26 @@ body {
 }
 
 
+/* ------- Allauth Formatting -------- */
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid var(--button-bg-color);
+    background: var(--button-bg-color);
+    padding: 5px 10px;
+    color: var(--button-text-color);
+    transition: 0.3s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {
+    background-color: var(--button-hover-color);
+    color: var(--button-text-hover-color);
+}
+
 
 /* ------- Footer -------- */
 
@@ -445,9 +465,5 @@ body {
 
     .social-links a {
         font-size: 2rem;
-    }
-
-    .all-content {
-        margin-top: 200px;
     }
 }
