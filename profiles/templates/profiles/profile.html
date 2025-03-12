@@ -15,20 +15,53 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <p class="sub-text fw-bold">Delivery Information</p>
+            <p class="sub-text fw-bold fs-5">Delivery Information</p>
             <form class="my-2" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <div class="text-center">
+                <div class="text-center mb-4">
                 <button class="btn btn-account">Update Information</button>
                 </div>
             </form>
         </div>
         <div class="col-12 col-lg-6">
-            <p class="sub-text fw-bold">Order History</p>
-            {{ orders }}
+            <p class="sub-text fw-bold fs-5">Order History</p>
+            <div class="order-history table-responsive">
+                <table class="table table-sm table-borderless sub-text">
+                    <thead>
+                        <tr class="text-decoration-underline">
+                            <th>Order Number</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>OrderTotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'order_history' order.order_number %}"
+                                    title="{{ order.order_number }}">
+                                        {{ order.order_number }}
+                                    </a>
+                                </td>
+                                <td>{{ order.date }}</td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        {% for item in order.linemenus.all %}
+                                            <li class="small">
+                                                {{ item.menu.name }} x{{ item.quantity }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>${{ order.grand_total }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-{{ profile }}
 {% endblock content %}

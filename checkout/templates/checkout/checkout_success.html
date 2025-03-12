@@ -161,12 +161,21 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-7 text-center my-4">
+            {% if from_profile %}
+            <a href="{% url 'profile' %}" class="btn btn-order">
+                <span>
+                    <i class="fa-solid fa-angles-left"></i>
+                </span>
+                <span>Back to My Profile</span>
+            </a>
+            {% else %}
             <a href="{% url 'homepage' %}" class="btn btn-order">
                 <span>
                     <i class="fa-solid fa-angles-left"></i>
                 </span>
                 <span>Back to our homepage</span>
             </a>
+            {% endif %}
         </div>
     </div>
     

@@ -318,6 +318,17 @@ body {
 }
 
 
+
+/* ------- Profile Page -------- */
+
+.order-history {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+
+
+
 /* ------- Allauth Formatting -------- */
 
 .allauth-form-inner-content button,

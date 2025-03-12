@@ -5,6 +5,8 @@ from django.views.decorators.http import require_POST
 from .forms import OrderForm
 from .models import Order, OrderLineMenu
 from menu.models import MenuItem
+from profiles.forms import UserProfileForm
+from profiles.models import UserProfile
 from cart.contexts import cart_contents
 
 import stripe
@@ -103,7 +105,21 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        order_form = OrderForm()
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                   'full_name': profile.user.get_full_name(),
+                   'email': profile.user.email,
+                   'phone_number': profile.default_phone_number,
+                   'address': profile.default_address,
+                   'postcode': profile.default_postcode, 
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
+
 
         if not stripe_public_key:
             messages.warning(request, "Stripe public key is missing. Did you forgot to set  it in your environment?")
@@ -124,6 +140,26 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        # Attach the user's profile to the order
+        order.user_profile = profile
+        order.save()
+
+        # Save the User's infomation
+        if save_info:
+            profile_data = {
+                'default_full_name': order.full_name,
+                'default_email': order.email,
+                'default_phone_number': order.phone_number,
+                'default_address': order.address,
+                'default_postcode': order.postcode,
+            }
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
+            if user_profile_form.is_valid():
+                user_profile_form.save()
+
     messages.success(request, f'Order successfully processed! \
                      A confirmation \
                      email will be sent to {order.email}.')
