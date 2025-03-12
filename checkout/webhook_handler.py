@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from .models import Order, OrderLineMenu
 from menu.models import MenuItem
+from profiles.models import UserProfile
 
 import stripe
 import json
@@ -39,10 +40,23 @@ class StripeWH_Handler:
         shipping_details = intent.shipping
         grand_total = round(stripe_charge.amount / 100, 2)
         
-         # Clean data in the shipping details
+        # Clean data in the shipping details
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
+
+        # Update profile information if save_info was checked.
+        profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
+            if save_info:
+                profile.default_full_name = shipping_details.name,
+                profile.default_email = shipping_details.email,
+                profile.default_phone_number = shipping_details.phone,
+                profile.default_address = shipping_details.address,
+                profile.default_postcode = shipping_details.postal_code,
+                profile.save()
 
         order_exists = False
         attempt = 1
@@ -73,6 +87,7 @@ class StripeWH_Handler:
             try:
                 order = Order.objects.create(
                     full_name=shipping_details.name,
+                    user_profile=profile,
                     email=shipping_details.email,
                     phone_number=shipping_details.phone,
                     delivery_method=shipping_details.delivery_method,
