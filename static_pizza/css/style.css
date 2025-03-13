@@ -327,6 +327,11 @@ body {
 }
 
 
+/* ------- Admin Management Page -------- */
+#div_id_image .input-group {
+    display: none;
+}
+
 
 
 /* ------- Allauth Formatting -------- */

@@ -49,7 +49,8 @@
                                 {% if request.user.is_superuser %}
                                 <small class="my-0">
                                     <a href="{% url 'update_menu' menu.id %}" title="update" class="text-muted pe-3"><i class="fa-solid fa-pen"></i></a>|
-                                    <a href="{% url 'delete_menu' menu.id %}" title="delete" class="text-danger ps-3"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="{% url 'delete_menu' menu.id %}" title="delete" class="text-danger ps-3 btn-delete" data-menu_id="{{ menu.id }}" data-bs-toggle="modal" 
+                                    data-bs-target="#deleteModal"><i class="fa-solid fa-trash"></i></a>
                                 </small>
                                 {% endif %}
                                 <p class="sub-text">{{ menu.description }}</p>
@@ -103,6 +104,33 @@
     </a>
 </div>
 
+
+<!-- Delete confirmation modal: Credit by "I Think Therfore I blog" CL project -->
+<div class="modal fade" id="deleteModal" tabindex="-1"
+  aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+          id="deleteModalLabel">Delete Menu?</h5>
+        <button type="button" class="btn-close"
+          data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this menu?
+        This action cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+          data-bs-dismiss="modal">Close</button>
+        <a id="deleteConfirm" href="#" class="btn
+          btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endblock content %}
 
 <!-- Back to top button handle click function was learned from Boutique Ado project - Code Institute -->
@@ -113,6 +141,8 @@
         $('.btt-link').click(function(e){
             window.scrollTo(0,0)
         })
-    </script>
-    
+    </script>   
+{% endblock %}
+{% block extras %}
+<script src="{% static 'js/menu.js' %}"></script>
 {% endblock %}
