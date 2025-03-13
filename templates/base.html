@@ -106,7 +106,7 @@
                 {% if user.is_authenticated %}
                 {% if request.user.is_superuser %}
                 <li>
-                <a href="" class="nav-link dropdown-item">My Management</a>
+                <a href="{% url 'add_menu' %}" class="nav-link dropdown-item">Menu Management</a>
                 </li>
                 {% endif %}
                 <li>

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
 from .models import MenuItem, MenuList
 from .forms import MenuForm
 
@@ -28,8 +29,18 @@ def all_menus(request):
 
 
 def add_menu(request):
-    """ Add a menu to the restaurant """
-    form = MenuForm()
+    """ Add a menu to the restaurant site """
+    if request.method == 'POST':
+        form = MenuForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Menu added!")
+            return redirect(reverse('add_menu'))
+        else:
+            messages.error(request, "Failed adding menu. Please ensure the form is valid.")
+    else:
+        form = MenuForm()
+
     template = 'menu/add_menu.html'
     context = {
         'form': form,
