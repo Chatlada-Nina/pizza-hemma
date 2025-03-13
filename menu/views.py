@@ -71,3 +71,11 @@ def update_menu(request, menu_id):
     }
 
     return render(request, template, context)
+
+
+def delete_menu(request, menu_id):
+    """ Delete menu from the restaurant site """
+    menu = get_object_or_404(MenuItem, pk=menu_id)
+    menu.delete()
+    messages.success(request, 'Menu deleted!')
+    return redirect(reverse('all_menus'))

@@ -45,7 +45,13 @@
                             </div>
                             {% endif %}
                             <div class="card-body pb-0">
-                                <h5 class="main-text my-3">{{ menu.name }}</h5>
+                                <h5 class="main-text mt-3">{{ menu.name }}</h5>
+                                {% if request.user.is_superuser %}
+                                <small class="my-0">
+                                    <a href="{% url 'update_menu' menu.id %}" title="update" class="text-muted pe-3"><i class="fa-solid fa-pen"></i></a>|
+                                    <a href="{% url 'delete_menu' menu.id %}" title="delete" class="text-danger ps-3"><i class="fa-solid fa-trash"></i></a>
+                                </small>
+                                {% endif %}
                                 <p class="sub-text">{{ menu.description }}</p>
                             </div>
                             <div class="card-footer pt-0 border-0 text-left">
