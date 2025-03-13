@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import MenuItem, MenuList
+from .forms import MenuForm
 
 # Create your views here.
 
@@ -24,3 +25,14 @@ def all_menus(request):
     }
 
     return render(request, 'menu/menus.html', context)
+
+
+def add_menu(request):
+    """ Add a menu to the restaurant """
+    form = MenuForm()
+    template = 'menu/add_menu.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

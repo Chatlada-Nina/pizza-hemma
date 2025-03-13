@@ -180,7 +180,7 @@ body {
 #id_delivery_method, #id_address,
 #id_postcode, #id_name,
 #id_message, .card-field,
-.profile-form-input {
+.profile-form-input, .form-control {
     border: 1px solid var(--text-color);
     color: var(--text-color);
     background: none;
