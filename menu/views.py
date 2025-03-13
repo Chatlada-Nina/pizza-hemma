@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import MenuItem, MenuList
 from .forms import MenuForm
 
@@ -27,9 +28,13 @@ def all_menus(request):
 
     return render(request, 'menu/menus.html', context)
 
-
+@login_required
 def add_menu(request):
     """ Add a menu to the restaurant site """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can do that')
+        return redirect(reverse('homepage'))
+
     if request.method == 'POST':
         form = MenuForm(request.POST, request.FILES)
         if form.is_valid():
@@ -48,9 +53,12 @@ def add_menu(request):
 
     return render(request, template, context)
 
-
+@login_required
 def update_menu(request, menu_id):
     """ Update a menu in the restaurant site """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can do that')
+        return redirect(reverse('homepage'))
     menu = get_object_or_404(MenuItem, pk=menu_id)
     if request.method == 'POST':
         form = MenuForm(request.POST, request.FILES, instance=menu)
@@ -72,9 +80,12 @@ def update_menu(request, menu_id):
 
     return render(request, template, context)
 
-
+@login_required
 def delete_menu(request, menu_id):
     """ Delete menu from the restaurant site """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only admin can do that')
+        return redirect(reverse('homepage'))
     menu = get_object_or_404(MenuItem, pk=menu_id)
     menu.delete()
     messages.success(request, 'Menu deleted!')
