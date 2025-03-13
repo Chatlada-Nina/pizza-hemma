@@ -47,3 +47,27 @@ def add_menu(request):
     }
 
     return render(request, template, context)
+
+
+def update_menu(request, menu_id):
+    """ Update a menu in the restaurant site """
+    menu = get_object_or_404(MenuItem, pk=menu_id)
+    if request.method == 'POST':
+        form = MenuForm(request.POST, request.FILES, instance=menu)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Menu updated!')
+            return redirect(reverse('add_menu'))
+        else:
+            messages.error(request, 'Failed to update menu. Please ensure the form is valid.')
+    else:
+        form = MenuForm(instance=menu)
+        messages.info(request, f'You are updating {menu.name}')
+
+    template = 'menu/update_menu.html'
+    context = {
+        'form': form,
+        'menu': menu,
+    }
+
+    return render(request, template, context)
