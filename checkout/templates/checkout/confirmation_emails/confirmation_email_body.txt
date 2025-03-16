@@ -7,20 +7,21 @@ Order Date: {{ order.date }}
 
 Order Total: {{ order.order_total }}sek
 Delivery Method: {{ order.delivery_method }}
-Delivery: {{ order.delivery_cost }}sek
+Delivery Cost: {{order.delivery_cost }}sek
 Grand Total: {{ order.grand_total }}sek
 
-Pick up Info.
+{% if order.delivery_method == "delivery" %}
+**Delivery Service Info.**
 
-Your order will be ready in 30 minutes, please let us know if you want your order in specific time. 
-
-Delivery Service Info.
-
-Your order will be shipped to {{ order.address }}, Gothenburg in 20-40 munutes.
+- Your order will be shipped to {{ order.address }}, Gothenburg in 20-40 munutes.
 We're going to call {{ order.phone_number }} from This phone number 031-001-0001 when we are close to your address.
+{% else %}
+**Pick up Info.**
 
+- Your order will be ready in 30 minutes, please let us know if you want your order in specific time.
+{% endif %}
 
-If you have any questions, feel free to contact us at {{ contact_email }}.
+If you have any questions, feel free to contact us at {{ contact_email }}, our phone number 031-165-7680.
 Thank you for your order!
 
 Sincerely,

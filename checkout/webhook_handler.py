@@ -8,7 +8,7 @@ from profiles.models import UserProfile
 
 import stripe
 import json
-import time
+
 
 class StripeWH_Handler:
     """
@@ -39,109 +39,118 @@ class StripeWH_Handler:
         Handle a generic/unknown/unexpected webhook event
         """
         return HttpResponse(
-            content= f'Unhandled webhook received: {event["type"]}',
+            content=f'Unhandled webhook received: {event["type"]}',
             status=200)
     
     def handle_payment_intent_succeeded(self, event):
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        intent = event.data.object
-        pid = intent.id
-        cart = intent.metadata.cart
-        save_info = intent.metadata.save_info
+        try:
+            intent = event.data.object
+            pid = intent.id
+            cart = intent.metadata.get('cart', '{}')
+            save_info = intent.get('save_info', False) == 'true'
 
-        # Get the Charge object
-        stripe_charge = stripe.Charge.retrieve(
-        intent.latest_charge
-        )
+            # Get the Charge object
+            stripe_charge = None
+            if intent.latest_charge:
+                stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
 
-        billing_details = stripe_charge.billing_details
-        shipping_details = intent.shipping
-        grand_total = round(stripe_charge.amount / 100, 2)
-        
-        # Clean data in the shipping details
-        for field, value in shipping_details.address.items():
-            if value == "":
-                shipping_details.address[field] = None
+            billing_details = stripe_charge.billing_details if stripe_charge else {}
+            shipping_details = intent.shipping if intent.shipping else {}
+            shipping_address = shipping_details.get('address', {}) if shipping_details else {}
 
-        # Update profile information if save_info was checked.
-        profile = None
-        username = intent.metadata.username
-        if username != 'AnonymousUser':
-            profile = UserProfile.objects.get(user__username=username)
-            if save_info:
-                profile.default_full_name = shipping_details.name,
-                profile.default_email = shipping_details.email,
-                profile.default_phone_number = shipping_details.phone,
-                profile.default_address = shipping_details.address,
-                profile.default_postcode = shipping_details.postal_code,
-                profile.save()
+            full_name = shipping_details.get('name', billing_details.get('name')) 
+            email = shipping_details.get('email', billing_details.get('email'))
+            if not email:
+                email = "no-email@example.com"
+            phone = shipping_details.get('phone', billing_details.get('phone'))
+            if not phone:
+                phone = "no-phone@example.com" 
+            address = shipping_address.get('line1', None)  
+            postcode = shipping_address.get('postal_code', None)
 
-        order_exists = False
-        attempt = 1
-        while attempt <= 5:
-            try:
-                order = Order.objects.get(
-                    full_name__iexact=shipping_details.name,
-                    email__iexact=shipping_details.email,
-                    phone_number__iexact=shipping_details.phone,
-                    delivery_method__iexact=shipping_details.delivery_method,
-                    address__iexact=shipping_details.address,
-                    postcode__iexact=shipping_details.postal_code,
-                    grand_total=grand_total,
-                    original_cart=cart,
-                    stripe_pid=pid,
-                )
-                order_exists = True
-                break
-            except Order.DoesNotExist:
-                attempt += 1
-                time.sleep(1)
-        if order_exists:
-            self._send_confirmation_email(order)
-            return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
-                status=200)
-        else:
-            order = None
+            delivery_method = intent.metadata.get('delivery_method', 'delivery')
+
+            grand_total = round(stripe_charge.amount / 100, 2)
+
+            # Update profile information if save_info was checked.
+            profile = None
+            username = intent.metadata.get('username', 'AnonymousUser')
+            if username != 'AnonymousUser':
+                profile = UserProfile.objects.get(user__username=username)
+                if profile and save_info:
+                    profile.default_full_name = full_name
+                    profile.default_email = email
+                    profile.default_phone_number = phone
+                    profile.default_address = address
+                    profile.default_postcode = postcode
+                    profile.save()
+
+            # Check if the order already exists
+            filter_kwargs = {
+                "full_name__iexact": full_name or "",
+                "email__iexact": email or "",
+                "phone_number__icontains": phone or "",
+                "address__icontains": address or "",
+                "postcode__iexact": postcode or "",
+                "grand_total": grand_total,
+                "original_cart": cart or "",
+                "stripe_pid": pid or "",
+            }
+
+            # Remove fields that are None to prevent ValueError
+            filter_kwargs = {key: value for key, value in filter_kwargs.items() if value is not None}
+
+            # Query the database
+            order = Order.objects.filter(**filter_kwargs).first()
+
+            if order:
+                self._send_confirmation_email(order)
+                return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                    status=200)
+
+            # Create the order if it doesn't exist
             try:
                 order = Order.objects.create(
-                    full_name=shipping_details.name,
+                    full_name=full_name,
                     user_profile=profile,
-                    email=shipping_details.email,
-                    phone_number=shipping_details.phone,
-                    delivery_method=shipping_details.delivery_method,
-                    address=shipping_details.address,
-                    postcode=shipping_details.postal_code,
+                    email=email,
+                    phone_number=phone,
+                    delivery_method=delivery_method,
+                    address=address,
+                    postcode=postcode,
                     grand_total=grand_total,
                     original_cart=cart,
                     stripe_pid=pid,
                 )
+                order.update_total()
+
                 for item_id, item_data in json.loads(cart).items():
                     item = MenuItem.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_menu = OrderLineMenu(
-                            order=order,
-                            menu=item,
-                            quantity=item_data,
-                        )
-                        order_line_menu.save()
-            except Exception as e:
-                if order:
-                    order.delete()
+                    OrderLineMenu.objects.create(order=order, menu=item, quantity=item_data)
+
+
+                self._send_confirmation_email(order)
                 return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | ERROR: {e}',
-                    status=500)
-        self._send_confirmation_email(order)
-        return HttpResponse(
-            content= f'Webhook received: {event["type"]}',
-            status=200)
-    
+                    content=f'Webhook received: {event["type"]} | Order Created',
+                    status=200)
+        
+            except Exception as e:
+                return HttpResponse(content=f'Webhook received: {event["type"]} | ERROR: {e}', status=500)
+            
+        except Exception as e:
+            return HttpResponse(content=f'Error handling payment intent: {e}', status=500)
+
     def handle_payment_intent_payment_failed(self, event):
         """
         Handle the payment_intent.payment_failed webhook from Stripe
         """
-        return HttpResponse(
-            content= f'Webhook received: {event["type"]}',
-            status=200)
+        try:
+            return HttpResponse(
+                content= f'Webhook received: {event["type"]}',
+                status=200)
+        except Exception as e:
+            return HttpResponse(content=f'Error handling payment failed event: {e}', status=500)
