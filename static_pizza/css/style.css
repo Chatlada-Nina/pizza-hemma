@@ -215,15 +215,16 @@ body {
     position: fixed;
     bottom: 70px;
     right: 10px;
-    background-color: var(--text-hover-color);
+    background-color: var(--text-color);
 }
 
 .btt-link {
     cursor: pointer;
-    color: var(--button-text-hover-color);
+    color: var(--button-text-color);
     text-decoration: none;
 }
 .btt-link:hover {
+    background-color: var(--text-hover-color);
     color: var(--button-text-hover-color);
 }
 
@@ -231,13 +232,14 @@ body {
     background: url(../images/cart-icon.svg) no-repeat right;
     padding-right: 15px;
     background-size: 15px;
-    background-color: var(--button-text-color);
-    color: var(--button-text-hover-color);
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
     font-family: var(--secondary-font);
-    border-right: 7px solid var(--button-text-color);
+    border-right: 7px solid var(--button-bg-color);
 }
 .btn-cart:hover {
-    color: var(--nav-color);
+    background-color: var(--button-hover-color);
+    color: var(--button-text-color);
 }
 
 
