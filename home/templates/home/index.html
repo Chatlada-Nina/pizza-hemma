@@ -45,10 +45,13 @@
                 <h2 class="title main-text mb-3">Subscribe us to get special offers today!</h2>
             </div>
             <div class="subscribe">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Your email address" aria-label="Your email address" aria-describedby="button-addon2">
-                    <button class="btn btn-account" type="button" id="button-addon2">Subscribe</button>
-                </div>
+                <form action="{% url 'subscribe' %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your email address" aria-label="Your email address" aria-describedby="button-addon2">
+                        <button class="btn btn-account" type="submit" id="button-addon2">Subscribe</button>
+                    </div>
+                </form>
             </div>
             <div>
                 <img class="banner-bottom" src="{% static 'images/banner-btm.png' %}" alt="banner-bottom">

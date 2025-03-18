@@ -1,4 +1,11 @@
 from django.contrib import admin
-from django_summernote.admin import SummernoteModelAdmin
+from .models import SubscribedUsers
 
 # Register your models here.
+
+
+class SubscribedUsersAdmin(admin.ModelAdmin):
+    list_display = ("email", "created_on", )
+
+
+admin.site.register(SubscribedUsers, SubscribedUsersAdmin)
