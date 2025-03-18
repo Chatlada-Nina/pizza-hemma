@@ -71,7 +71,9 @@
                 {{ order_form.email | as_crispy_field }}
                 {{ order_form.phone_number | as_crispy_field }}
                 {{ order_form.delivery_method | as_crispy_field }}
+                <p class="text-muted">**Delivery available only in <span class="fw-bold">Gothenburg</span> City.</p>
             </fieldset>
+
             <fieldset class="rounded px-3 mb-5">
                 <legend class="fieldset-label w-auto">Delivery</legend>
                 {{ order_form.street_address | as_crispy_field }}
@@ -90,6 +92,7 @@
                     {% endif %}
                 </div>
             </fieldset>
+
             <fieldset class="rounded px-3">
                 <legend class="fieldset-label w-auto">Payment</legend>
                 <!-- A Stripe card element will go here -->
