@@ -56,12 +56,14 @@ form.addEventListener('submit', function(ev) {
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var deliveryMethod = $('select[name="delivery_method"]').val();
+
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
         'save_info': saveInfo,
         'delivery_method': deliveryMethod,
     };
+
     var url = '/checkout/cache_checkout_data/';
 
     $.post(url, postData).done(function() {

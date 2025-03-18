@@ -72,8 +72,11 @@ class StripeWH_Handler:
             street_address = shipping_address.get('line1', '')  
             postcode = shipping_address.get('postal_code', None)
 
-            delivery_method = intent.metadata.get('delivery_method', 'delivery')
-            delivery_cost = Decimal(intent.metadata.get('delivery_cost', 0))
+            metadata = intent.metadata  # Store metadata
+            delivery_method = str(intent.metadata.get('delivery_method', 'delivery')).strip().lower()
+
+            # Initialize delivery_cost variable
+            delivery_cost = Decimal(0)
 
             # Recalculate grand total only if delivery cost is not provided in metadata
             cart_data = json.loads(cart) if cart else {}
