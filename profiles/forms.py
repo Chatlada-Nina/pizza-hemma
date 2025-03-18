@@ -16,8 +16,10 @@ class UserProfileForm(forms.ModelForm):
             'default_full_name': 'Full Name',
             'default_email': 'Email Address',
             'default_phone_number': 'Phone Number',
-            'default_address': 'Your Address',
+            'default_street_address': 'Your Address',
+            'default_town_or_city': 'Town or City',
             'default_postcode': 'Postcode',
+            'default_country': 'Country',
         }
 
         # Set the autofocus attribute on the full name field so the cursor start in the fullname field.

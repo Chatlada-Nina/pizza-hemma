@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+from decimal import Decimal
 from .models import Order, OrderLineMenu
 from menu.models import MenuItem
 from profiles.models import UserProfile
@@ -57,9 +58,9 @@ class StripeWH_Handler:
             if intent.latest_charge:
                 stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
 
-            billing_details = stripe_charge.billing_details if stripe_charge else {}
-            shipping_details = intent.shipping if intent.shipping else {}
-            shipping_address = shipping_details.get('address', {}) if shipping_details else {}
+            billing_details = getattr(stripe_charge, 'billing_details', {})
+            shipping_details = getattr(intent, 'shipping', {}) or {}
+            shipping_address = shipping_details.get('address', {}) or {}
 
             full_name = shipping_details.get('name', billing_details.get('name')) 
             email = shipping_details.get('email', billing_details.get('email'))
@@ -68,10 +69,25 @@ class StripeWH_Handler:
             phone = shipping_details.get('phone', billing_details.get('phone'))
             if not phone:
                 phone = "no-phone@example.com" 
-            address = shipping_address.get('line1', None)  
+            street_address = shipping_address.get('line1', '')  
             postcode = shipping_address.get('postal_code', None)
 
             delivery_method = intent.metadata.get('delivery_method', 'delivery')
+            delivery_cost = Decimal(intent.metadata.get('delivery_cost', 0))
+
+            # Recalculate grand total only if delivery cost is not provided in metadata
+            cart_data = json.loads(cart) if cart else {}
+            total = sum(MenuItem.objects.get(id=item_id).price * quantity for item_id, quantity in cart_data.items())
+
+            # Only recalculate delivery cost if it's not provided in the metadata
+            if delivery_cost == 0:
+                if delivery_method == 'delivery':
+                    if total < settings.FREE_DELIVERY_THRESHOLD:
+                        delivery_cost = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+                    else:
+                        delivery_cost = Decimal(0)
+                else:  # If pickup
+                    delivery_cost = Decimal(0)
 
             grand_total = round(stripe_charge.amount / 100, 2)
 
@@ -84,7 +100,9 @@ class StripeWH_Handler:
                     profile.default_full_name = full_name
                     profile.default_email = email
                     profile.default_phone_number = phone
-                    profile.default_address = address
+                    profile.default_street_address = street_address
+                    profile.default_town_or_city = shipping_address.get('city', 'Gothenburg')
+                    profile.default_country = shipping_address.get('country', 'SE')
                     profile.default_postcode = postcode
                     profile.save()
 
@@ -93,7 +111,7 @@ class StripeWH_Handler:
                 "full_name__iexact": full_name or "",
                 "email__iexact": email or "",
                 "phone_number__icontains": phone or "",
-                "address__icontains": address or "",
+                "street_address__icontains": street_address or "",
                 "postcode__iexact": postcode or "",
                 "grand_total": grand_total,
                 "original_cart": cart or "",
@@ -120,7 +138,9 @@ class StripeWH_Handler:
                     email=email,
                     phone_number=phone,
                     delivery_method=delivery_method,
-                    address=address,
+                    street_address=street_address,
+                    town_or_city=shipping_address.get('city', 'Gothenburg'),
+                    country=shipping_address.get('country', 'SE'),
                     postcode=postcode,
                     grand_total=grand_total,
                     original_cart=cart,

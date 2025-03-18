@@ -13,7 +13,7 @@ Grand Total: {{ order.grand_total }}sek
 {% if order.delivery_method == "delivery" %}
 **Delivery Service Info.**
 
-- Your order will be shipped to {{ order.address }}, Gothenburg in 20-40 munutes.
+- Your order will be shipped to {{ order.street_address }}, Gothenburg in 20-40 munutes.
 We're going to call {{ order.phone_number }} from This phone number 031-001-0001 when we are close to your address.
 {% else %}
 **Pick up Info.**

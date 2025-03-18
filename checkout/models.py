@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
+from django.forms import ValidationError
 from menu.models import MenuItem
 from profiles.models import UserProfile
 
@@ -25,7 +26,9 @@ class Order(models.Model):
         null=False,
         blank=False
     )
-    address = models.CharField(max_length=100, null=True, blank=True)
+    country = models.CharField(max_length=40, null=False, blank=False, default='SE')
+    town_or_city = models.CharField(max_length=40, null=False, blank=False, default='Gothenburg')
+    street_address = models.CharField(max_length=80, null=False, blank=False)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
@@ -36,8 +39,8 @@ class Order(models.Model):
 
     # clean method ensures the address field is only required if user selects "Delivery"
     def clean(self):
-        if self.delivery_method == 'delivery' and not self.address:
-            raise ValidationError({'address': 'Address is required for delivery.'})
+        if self.delivery_method == 'delivery' and not self.street_address:
+            raise ValidationError({'street_address': 'Street Address is required for delivery.'})
 
         
     def update_total(self):
