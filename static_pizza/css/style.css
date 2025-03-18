@@ -3,13 +3,13 @@
     --primary-font: 'Alfa Slab One', serif;
     --secondary-font: 'Chivo', serif;
     --nav-color: #ffffff;
-    --background-color: #e0e5df;
-    --text-color: #35724c;
-    --text-hover-color: #0e4b20;
-    --button-bg-color: rgba(244, 73, 73, 0.153);
-    --button-text-color:#d52b0c;
-    --button-hover-color: #f7593d;
-    --button-text-hover-color:#fff;
+    --background-color: #f0f1ef;
+    --text-color: #0d4e17;
+    --text-hover-color: #04b338;
+    --button-bg-color: #d52b0c;
+    --button-text-color:#ffffff;
+    --button-hover-color: #f90808;
+    --button-text-hover-color:#ffffff;
 }
 
 
@@ -58,7 +58,7 @@ body {
 
 .quantity {
     font-size: 0.7rem;
-    color: var(--button-text-color);
+    color: var(--button-bg-color);
 }
 
 .dropdown-item, .fa-circle-user {
@@ -71,7 +71,7 @@ body {
 
 .btn-order {
     border: 1px solid var(--button-bg-color);
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     padding: 10px 20px 10px 20px;
     font-size: 1.2rem;
     background-color: var(--button-bg-color);

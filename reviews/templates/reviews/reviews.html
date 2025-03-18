@@ -75,6 +75,10 @@
                 </form>
                 {% else %}
                 <p>Log in to leave a review</p>
+                <label for="id-save-info" class="form-check-label">
+                  <a href="{% url 'account_signup' %}" class="text-danger">Create an account</a> or 
+                  <a href="{% url 'account_login' %}" class="text-primary">login</a> here.
+                </label>
                 {% endif %}
             </div>
         </div>
