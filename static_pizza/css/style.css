@@ -240,6 +240,7 @@ body {
 .btn-cart:hover {
     background-color: var(--button-hover-color);
     color: var(--button-text-color);
+    border-right: 7px solid var(--button-hover-color);
 }
 
 
