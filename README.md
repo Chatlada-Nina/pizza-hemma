@@ -497,6 +497,7 @@ I have used various resources to help me with figuring out how to create the Piz
 - [ChatGPT- used as an accelerating learning tool](https://chat.openai.com/)
 - [Microsoft Copilot - used as an accelerating learning tool](https://copilot.microsoft.com/)
 - [Learn Django - for the custom error pages](https://learndjango.com/tutorials/customizing-django-404-and-500-error-pages)
+- [Studygyaan - Custom 500 Server Error Page Template in Django](https://studygyaan.com/django/how-to-use-custom-500-error-template-in-django)
 - [Django Docs - for automated testing](https://docs.djangoproject.com/en/5.1/topics/testing/overview/)
 - [Stack overflow](https://stackoverflow.com/)
 - [Pep Style Guide](https://peps.python.org/pep-0008/)

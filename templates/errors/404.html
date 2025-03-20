@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container col-12 col-md-10 g-4 my-4">
+    <div class="row justify-content-center">
+      <div class="col-12 my-4">
+        <h1 class="main-text text-center my-3">404</h1>
+        <h2 class="main-text text-center mb-4">Page not found</h2>
+        <p class="sub-text text-center mt-4">The page you are looking for doesn't exist or has been removed.</p>
+      </div>
+      <div class="col-12 text-center my-4">
+        <a href="{% url 'homepage' %}" class="btn btn-order">
+            <span>
+                <i class="fa-solid fa-angles-left"></i>
+            </span>
+            <span>Back to homepage</span>
+        </a>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

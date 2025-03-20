@@ -31,3 +31,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path('', include("home.urls"), name="home-urls"),
 ]
+
+# Error handlers
+handler404 = 'pizza_hemma.views.handler404'
+handler500 = 'pizza_hemma.views.handler500'
