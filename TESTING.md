@@ -49,10 +49,34 @@ I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-val
 
 ### JavaScript
 
-I have used the recommended [JShint Validator](https://jshint.com) to validate all of my JS files (the menu.js file, the reviews.js file and the stripe*elements.js file). After inserting /\_jshint esversion: 6 */ at the top of the files no errors were returned.
+I have used the recommended [JShint Validator](https://jshint.com) to validate all of my JS files. After inserting /*jshint esversion: 6/, /*global $/, stripe and bootstrap/ at the top of the files no errors were returned.
 
-| File               | Screenshot                                                         | Notes                                    |
-| ------------------ | ------------------------------------------------------------------ | ---------------------------------------- |
-| menu.js            | ![screenshot](documentation/testing/jshint/menu-js.png)            | Pass after insert /_ global Stripe _/    |
-| reviews.js         | ![screenshot](documentation/testing/jshint/reviews-js.png)         | Pass after insert /_ global Stripe _/    |
-| stripe_elements.js | ![screenshot](documentation/testing/jshint/stripe-elements-js.png) | Pass after insert /_ global $, Stripe _/ |
+| File               | Screenshot                                                         | Notes |
+| ------------------ | ------------------------------------------------------------------ | ----- |
+| menu.js            | ![screenshot](documentation/testing/jshint/menu-js.png)            | Pass  |
+| reviews.js         | ![screenshot](documentation/testing/jshint/reviews-js.png)         | Pass  |
+| stripe_elements.js | ![screenshot](documentation/testing/jshint/stripe-elements-js.png) | Pass  |
+
+### Python
+
+I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com) to validate all of my Python files. No errors were returned:
+
+#### Validation For Coffee Corner App
+
+| File        | Screenshot                                                              | Notes           |
+| ----------- | ----------------------------------------------------------------------- | --------------- |
+| asgi.py     | ![screenshot](documentation/testing/python/pizzahemma-app/asgi.png)     | Pass: No Errors |
+| settings.py | ![screenshot](documentation/testing/python/pizzahemma-app/settings.png) | Pass: No Errors |
+| urls.py     | ![screenshot](documentation/testing/python/pizzahemma-app/urls.png)     | Pass: No Errors |
+| views.py    | ![screenshot](documentation/testing/python/pizzahemma-app/views.png)    | Pass: No Errors |
+| wsgi.py     | ![screenshot](documentation/testing/python/pizzahemma-app/wsgi.png)     | Pass: No Errors |
+
+#### Validation For about App
+
+| File      | Screenshot                                                       | Notes           |
+| --------- | ---------------------------------------------------------------- | --------------- |
+| admin.py  | ![screenshot](documentation/testing/python/about-app/admin.png)  | Pass: No Errors |
+| apps.py   | ![screenshot](documentation/testing/python/about-app/apps.png)   | Pass: No Errors |
+| models.py | ![screenshot](documentation/testing/python/about-app/models.png) | Pass: No Errors |
+| urls.py   | ![screenshot](documentation/testing/python/about-app/urls.png)   | Pass: No Errors |
+| views.py  | ![screenshot](documentation/testing/python/about-app/views.png)  | Pass: No Errors |
