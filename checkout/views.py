@@ -90,6 +90,7 @@ def checkout(request):
 
             order.save()
 
+            # Create OrderLineMenu for each cart item
             for item_id, item_data in cart.items():
                 try:
                     item = MenuItem.objects.get(id=item_id)

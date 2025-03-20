@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<!---- Learned from Boutique Ado project - CI Learning Platform and modified as the project needed ----->
+<!-- Learned from Boutique Ado project - CI Learning Platform and modified as the project needed -->
 
 <div class="container my-4">
     <div class="row">
@@ -85,7 +85,7 @@
                         <label for="id-save-info" class="form-check-label">Save this delivery information to my profile.</label>
                         <input type="checkbox" id="id-save-info" name="save-info" class="form-check-inout ml-2 mr-0" checked>
                     {% else %}
-                        <label for="id-save-info" class="form-check-label">
+                        <label class="form-check-label">
                             <a href="{% url 'account_signup' %}" class="text-danger">Create an account</a> or 
                             <a href="{% url 'account_login' %}" class="text-primary">login</a> to save this information.
                         </label>
@@ -129,6 +129,7 @@
         <span>
             <i class="fas fa-3x fa-sync-alt fa-spin"></i>
         </span>
+        <span class="sr-only">Loading...</span>
     </h1>
 </div>
 
