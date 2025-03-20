@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+/* global $, Stripe */
+
 /*
 This code was learned from Boutique Ado project-CI Learning platform and modified as the project needed.
 */
@@ -113,7 +116,7 @@ form.addEventListener('submit', function(ev) {
     }).fail(function() {
         // Reload the page, the error will be in django messages
         location.reload();
-    })
+    });
 });
 
 

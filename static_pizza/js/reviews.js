@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+/* global bootstrap */
 
 document.addEventListener("DOMContentLoaded", function() {
   const editButtons = document.getElementsByClassName("btn-edit");

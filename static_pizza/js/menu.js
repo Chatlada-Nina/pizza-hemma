@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+/* global bootstrap */
 
 document.addEventListener("DOMContentLoaded", function() {
     const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
