@@ -8,9 +8,11 @@ from .forms import ContactForm
 def contact_us(request):
     """
     Allow user contact requests.
+
     **Context**
     ``contact_form``
-        An instance of :form: `contact.ContactForm`.
+        A form for users to submit contact requests.
+
     **Template:**
     :template:`contact/contactus.html`
     """
@@ -18,7 +20,13 @@ def contact_us(request):
         contact_form = ContactForm(data=request.POST)
         if contact_form.is_valid():
             contact_form.save()
-            messages.add_message(request, messages.SUCCESS, "Your request has been received. We aim to reply within 2 business days.")
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                "Your request has been received. "
+                "We aim to reply within 2 business days."
+            )
+
     contact_form = ContactForm()
 
     return render(

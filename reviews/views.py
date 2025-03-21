@@ -5,6 +5,8 @@ from .models import Review
 from .forms import ReviewForm
 
 # Create your views here.
+
+
 def reviews(request):
     """
     Render the reviews page
@@ -60,7 +62,8 @@ def review_edit(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
 
     if request.method == "POST":
-        review_form = ReviewForm(data=request.POST, files=request.FILES, instance=review)
+        review_form = ReviewForm(data=request.POST, files=request.FILES,
+                                 instance=review)
 
         if review_form.is_valid() and review.author == request.user:
             review = review_form.save(commit=False)
@@ -69,12 +72,12 @@ def review_edit(request, review_id):
         else:
             messages.add_message(request, messages.ERROR,
                                  "Error updating review!")
-            
+
         return HttpResponseRedirect(reverse("reviews"))
-    
+
     else:
         review_form = ReviewForm(instance=review)
-    
+
     return render(
         request,
         "reviews/reviews_edit.html",
@@ -100,5 +103,5 @@ def review_delete(request, review_id):
     else:
         messages.add_message(request, messages.ERROR,
                              'You can only delete your own reviews!')
-       
+
     return HttpResponseRedirect(reverse("reviews"))

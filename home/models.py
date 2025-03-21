@@ -4,6 +4,17 @@ from django.db import models
 
 
 class SubscribedUsers(models.Model):
+    """
+    Represents a user who has subscribed to the platform.
+
+    **Fields:**
+    - email: The email address of the subscribed user (unique).
+    - created_on: The date when the subscription was created.
+
+    **Meta:**
+    - verbose_name_plural: Specifies the plural name for the model in the admin
+    interface.
+    """
 
     class Meta:
         verbose_name_plural = 'Subscribed users'
