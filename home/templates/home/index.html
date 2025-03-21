@@ -48,7 +48,7 @@
                 <form action="{% url 'subscribe' %}" method="post">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input type="email" name="email" class="form-control" placeholder="Your email address" aria-label="Your email address" aria-describedby="button-addon2">
+                        <input type="email" name="email" autocomplete="email" class="form-control" placeholder="Your email address" aria-label="Your email address" aria-describedby="button-addon2">
                         <button class="btn btn-order" type="submit" id="button-addon2">SUBSCRIBE</button>
                     </div>
                 </form>

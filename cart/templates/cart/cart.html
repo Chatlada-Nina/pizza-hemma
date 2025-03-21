@@ -49,6 +49,7 @@
                                                         </span>
                                                     </button>
                                                 </div>
+                                                <label for="id_qty_{{ item.menu_id }}" class="visually-hidden">Quantity</label>
                                                 <input type="number" class="form-control form-control-sm qty_input text-center sub-text" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.menu_id }}" id="id_qty_{{ item.menu_id }}">
                                                 <div class="input-group-append">
                                                     <button aria-label="increment-button" class="increment-qty btn btn-sm btn-order" data-item_id="{{ item.menu_id }}" id="increment-qty_{{ item.menu_id }}">
@@ -58,7 +59,7 @@
                                             </div>
                                         </div> 
                                     </form>
-                                    <a class="update-link text-success"><small>Update</small></a>
+                                    <a class="update-link btn-link"><small>Update</small></a>
                                     <a class="remove-item text-danger" id="remove_{{ item.menu_id }}"><small>Remove</small></a>
                                 </td>
                                 <td class="py-3">
@@ -68,8 +69,8 @@
                         {% endfor %}
                         <tr class="sub-text">
                             <td colspan="5" class="pt-4 total">
-                                <h5>Total: <strong>{{ total }}</strong> sek</h5>
-                                <h5>Qty: {{ item_count }}</h5>
+                                <h3 class="fs-5">Total: <strong>{{ total }}</strong> sek</h3>
+                                <h4 class="fs-6">Qty: {{ item_count }}</h4>
                                 {% if free_delivery_delta > 0 %}
                                 <p class="mb-1 text-danger">
                                     **Free Delivery available for Order over 800sek | Spending just <strong>{{ free_delivery_delta }}</strong> more! or<br>Checkout now and pickup at the restaurant.

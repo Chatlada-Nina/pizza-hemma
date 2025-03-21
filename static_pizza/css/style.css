@@ -26,6 +26,7 @@ body {
 .logo {
     padding-left: 20px;
     max-width: 150px;
+    height: auto;
 }
 
 .navbar {
@@ -97,12 +98,14 @@ body {
 
 .banner {
     width: 100%;
+    height: auto;
     animation-name: fadein;
     animation-duration: 4s;
 }
 
 .banner-bottom {
     width: 100%;
+    height: auto;
     margin-top: 30px;
 }
 
@@ -165,6 +168,7 @@ body {
 
 .menu-list {
     width: 50%;
+    height: auto;
     border-radius: 50%;
     box-shadow: 10px 10px 10px #0e4b2094;
     transition: 0.3s ease-out;
@@ -202,6 +206,7 @@ body {
 
 .about-img {
     width: 80%;
+    height: auto;
     animation-name: fadein;
     animation-duration: 4s;
 }
@@ -270,6 +275,7 @@ body {
 .layout-img {
     flex: 25%;
     max-width: 25%;
+    height: auto;
     padding: 0 4px;
 }
 
@@ -277,6 +283,7 @@ body {
     margin-top: 8px;
     vertical-align: middle;
     width: 100%;
+    height: auto;
     animation-name: fadein;
     animation-duration: 4s;
 }

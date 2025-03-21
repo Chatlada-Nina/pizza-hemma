@@ -29,7 +29,7 @@
              {% for item in cart_items %}
              <div class="row">
                 <div class="col-3 mb-1">
-                    <a href="{% url 'all_menus' %}">
+                    <a aria-label="menu-item" href="{% url 'all_menus' %}">
                         {% if item.menu.image %}
                             <img class="img-cart rounded" src="{{ item.menu.image.url }}" alt="{{ menu.name }}">
                         {% endif %}
