@@ -1,4 +1,10 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render,
+    redirect,
+    reverse,
+    get_object_or_404,
+    HttpResponse
+)
 from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
@@ -15,10 +21,24 @@ import json
 
 # Create your views here.
 
+
 @require_POST
 def cache_checkout_data(request):
+    """
+    Cache the checkout data by updating the Stripe PaymentIntent metadata.
+
+    This view updates the metadata of a Stripe PaymentIntent with information
+    such as the cart data, delivery method, and user details. It is triggered
+    by a POST request and modifies the PaymentIntent using the provided
+    `client_secret`.
+
+    **Arguments:**
+    - `request`: The HttpRequest object containing POST data.
+
+    Returns an HTTP response with status 200 on success, or status 400 with an
+    error message if an exception occurs.
+    """
     try:
-        # Log received metadata
         delivery_method = request.POST.get('delivery_method', 'not_specified')
 
         pid = request.POST.get('client_secret').split('_secret')[0]
@@ -37,6 +57,39 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    Handles the checkout process for an order, including processing the order
+    form, calculating delivery costs and integrating with Stripe for payment.
+
+    If the request method is POST:
+    - Retrieves the cart data from the session and processes the order form.
+    - Saves the order details including customer information, delivery method
+    and payment details.
+    - Calculates the delivery cost based on the total value of the cart and the
+    delivery method selected.
+    - Creates an OrderLineMenu entry for each item in the cart.
+    - If the order form is valid, the order is saved and the user is redirected
+    to the  checkout success page.
+    - If the form is invalid, errors are displayed, and the user is prompted to
+    correct the information.
+
+    If the request method is GET:
+    - Displays the checkout page with a pre-filled order form, if available and
+    retrieves a Stripe payment intent.
+    - Prepares Stripe for the payment process and handles any missing keys or
+    required  information.
+    - Provides the order form with the necessary data, including default values
+    for authenticated users.
+
+    **Arguments:**
+    - `request`: The HttpRequest object, containing the user's order form data,
+    cart data and Stripe payment intent details.
+
+    Returns an HTTP response:
+    - Redirects to the checkout success page if the order is processed
+    successfully.
+    - Re-renders the checkout page if there are form errors.
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -67,7 +120,7 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
 
-             # Calculate total and delivery cost
+            # Calculate total and delivery cost
             current_cart = cart_contents(request)
             total = current_cart['total']
             delivery_method = form_data['delivery_method']
@@ -78,7 +131,7 @@ def checkout(request):
                     delivery_cost = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
                 else:
                     delivery_cost = 0
-            else:  # Pickup
+            else:
                 delivery_cost = 0
 
             grand_total = total + delivery_cost
@@ -103,18 +156,19 @@ def checkout(request):
                         order_line_menu.save()
                 except MenuItem.DoesNotExist:
                     messages.error(request, (
-                        "One of the menus in your cart wasn't found in our database."
+                        "One of the menus in cart wasn't found in database."
                         "Please call us for assistance!")
                     )
                     order.delete()
                     return redirect(reverse('view_cart'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                            args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
-            
+
             # Return to checkout page with the form data and errors
             template = 'checkout/checkout.html'
             context = {
@@ -127,7 +181,7 @@ def checkout(request):
     else:
         cart = request.session.get('cart', {})
         if not cart:
-            messages.error(request, "There's nothing in your cart at the moment")
+            messages.error(request, "There's nothing in your cart")
             return redirect(reverse('menu'))
 
         current_cart = cart_contents(request)
@@ -141,9 +195,8 @@ def checkout(request):
             metadata={
                 'cart': json.dumps(cart),
                 'delivery_method': request.session.get('delivery_method', 'delivery'),
-                'delivery_cost': str(delivery_cost),  # Pass delivery cost as metadata
-    }
-        )
+                'delivery_cost': str(delivery_cost),
+            })
 
         if request.user.is_authenticated:
             try:
@@ -166,7 +219,8 @@ def checkout(request):
             })
 
         if not stripe_public_key:
-            messages.warning(request, "Stripe public key is missing. Did you forgot to set  it in your environment?")
+            messages.warning(request, "Stripe public key is missing."
+                                      "Did you forgot to set it to your environment?")
 
         template = 'checkout/checkout.html'
         context = {
@@ -180,7 +234,25 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """
-    Handle successful checkouts
+    Handles the successful completion of a checkout process.
+
+    When an order is successfully processed:
+    - Retrieves the order details using the order number.
+    - If the user is authenticated, associates the order with their user
+    profile and saves any relevant profile information.
+    - Optionally saves the user's information in their profile if the
+    'save_info' flag is set in the session.
+    - Displays a success message indicating that the order was successfully
+    processed, and sends a confirmation email to the user.
+    - Clears the user's cart from the session.
+
+    **Arguments:**
+    - `request`: The HttpRequest object, containing session data and user
+    details.
+    - `order_number`: The unique identifier for the order to be processed.
+
+    Returns an HTTP response:
+    - Renders the checkout success page with the order details.
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
