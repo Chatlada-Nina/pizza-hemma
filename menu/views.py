@@ -9,7 +9,18 @@ from .forms import MenuForm
 
 def all_menus(request):
     """
-    A view to show all menu, including sorting.
+    Display all menu items, with optional filtering by menu list.
+
+    If a 'menu_list' parameter is present in the request, filters the menu
+    items to only include those belonging to the specified menu list(s).
+
+    Args:
+        request (HttpRequest): The HTTP request object containing GET
+        parameters.
+
+    Returns:
+        HttpResponse: The rendered menu page with filtered or unfiltered menu
+        items.
     """
     menus = MenuItem.objects.all()
     menu_lists = []
@@ -20,7 +31,6 @@ def all_menus(request):
             menus = menus.filter(menu_list__name__in=menu_lists)
             menu_lists = MenuList.objects.filter(name__in=menu_lists)
 
-
     context = {
         'menus': menus,
         'current_menu_lists': menu_lists,
@@ -28,9 +38,22 @@ def all_menus(request):
 
     return render(request, 'menu/menus.html', context)
 
+
 @login_required
 def add_menu(request):
-    """ Add a menu to the restaurant site """
+    """
+    Allow admin users to add a new menu item to the restaurant.
+
+    Only superusers can access this view. Handles both GET (form display)
+    and POST (form submission) requests.
+
+    Args:
+        request (HttpRequest): The HTTP request object containing form data.
+
+    Returns:
+        HttpResponse: Redirects to the add menu page on success, or re-renders
+        the form with errors on failure.
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin can do that')
         return redirect(reverse('homepage'))
@@ -42,7 +65,10 @@ def add_menu(request):
             messages.success(request, "Menu added!")
             return redirect(reverse('add_menu'))
         else:
-            messages.error(request, "Failed adding menu. Please ensure the form is valid.")
+            messages.error(
+                request, "Failed adding menu."
+                "Please ensure the form is valid."
+                )
     else:
         form = MenuForm()
 
@@ -53,9 +79,23 @@ def add_menu(request):
 
     return render(request, template, context)
 
+
 @login_required
 def update_menu(request, menu_id):
-    """ Update a menu in the restaurant site """
+    """
+    Allow admin users to update an existing menu item.
+
+    Only superusers can access this view. Handles both GET (form display)
+    and POST (form submission) requests.
+
+    Args:
+        request (HttpRequest): The HTTP request object containing form data.
+        menu_id (int): The ID of the menu item to be updated.
+
+    Returns:
+        HttpResponse: Redirects to the add menu page on success, or re-renders
+        the form with errors on failure.
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin can do that')
         return redirect(reverse('homepage'))
@@ -67,7 +107,10 @@ def update_menu(request, menu_id):
             messages.success(request, 'Menu updated!')
             return redirect(reverse('add_menu'))
         else:
-            messages.error(request, 'Failed to update menu. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to update menu.'
+                'Please ensure the form is valid.'
+                )
     else:
         form = MenuForm(instance=menu)
         messages.info(request, f'You are updating {menu.name}')
@@ -80,9 +123,20 @@ def update_menu(request, menu_id):
 
     return render(request, template, context)
 
+
 @login_required
 def delete_menu(request, menu_id):
-    """ Delete menu from the restaurant site """
+    """
+    Allow admin users to delete a menu item from the restaurant.
+    Only superusers can access this view.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        menu_id (int): The ID of the menu item to be deleted.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the all menus page after deletion.
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only admin can do that')
         return redirect(reverse('homepage'))

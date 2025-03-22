@@ -94,14 +94,13 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 
 #### Validation For Home App
 
-| File          | Screenshot                                                          | Notes           |
-| ------------- | ------------------------------------------------------------------- | --------------- |
-| admin.py      | ![screenshot](documentation/testing/python/home-app/admin.png)      | Pass: No Errors |
-| apps.py       | ![screenshot](documentation/testing/python/home-app/apps.png)       | Pass: No Errors |
-| test_forms.py | ![screenshot](documentation/testing/python/home-app/test_forms.png) | Pass: No Errors |
-| models.py     | ![screenshot](documentation/testing/python/home-app/models.png)     | Pass: No Errors |
-| urls.py       | ![screenshot](documentation/testing/python/home-app/urls.png)       | Pass: No Errors |
-| views.py      | ![screenshot](documentation/testing/python/home-app/views.png)      | Pass: No Errors |
+| File      | Screenshot                                                      | Notes           |
+| --------- | --------------------------------------------------------------- | --------------- |
+| admin.py  | ![screenshot](documentation/testing/python/home-app/admin.png)  | Pass: No Errors |
+| apps.py   | ![screenshot](documentation/testing/python/home-app/apps.png)   | Pass: No Errors |
+| models.py | ![screenshot](documentation/testing/python/home-app/models.png) | Pass: No Errors |
+| urls.py   | ![screenshot](documentation/testing/python/home-app/urls.png)   | Pass: No Errors |
+| views.py  | ![screenshot](documentation/testing/python/home-app/views.png)  | Pass: No Errors |
 
 #### Validation For Reviews App
 
@@ -126,13 +125,12 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 
 #### Validation For Cart App
 
-| File      | Screenshot                                                      | Notes           |
-| --------- | --------------------------------------------------------------- | --------------- |
-| apps.py   | ![screenshot](documentation/testing/python/cart-app/apps.png)   | Pass: No Errors |
-| forms.py  | ![screenshot](documentation/testing/python/cart-app/forms.png)  | Pass: No Errors |
-| models.py | ![screenshot](documentation/testing/python/cart-app/models.png) | Pass: No Errors |
-| urls.py   | ![screenshot](documentation/testing/python/cart-app/urls.png)   | Pass: No Errors |
-| views.py  | ![screenshot](documentation/testing/python/cart-app/views.png)  | Pass: No Errors |
+| File        | Screenshot                                                        | Notes           |
+| ----------- | ----------------------------------------------------------------- | --------------- |
+| apps.py     | ![screenshot](documentation/testing/python/cart-app/apps.png)     | Pass: No Errors |
+| contexts.py | ![screenshot](documentation/testing/python/cart-app/contexts.png) | Pass: No Errors |
+| urls.py     | ![screenshot](documentation/testing/python/cart-app/urls.png)     | Pass: No Errors |
+| views.py    | ![screenshot](documentation/testing/python/cart-app/views.png)    | Pass: No Errors |
 
 #### Validation For Checkout App
 
@@ -146,3 +144,29 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | views.py           | ![screenshot](documentation/testing/python/checkout-app/views.png)           | Pass: No Errors |
 | webhook-handler.py | ![screenshot](documentation/testing/python/checkout-app/webhook-handler.png) | Pass: No Errors |
 | webhooks.py        | ![screenshot](documentation/testing/python/checkout-app/webhooks.png)        | Pass: No Errors |
+
+#### Validation For Menu App
+
+| File      | Screenshot                                                      | Notes           |
+| --------- | --------------------------------------------------------------- | --------------- |
+| apps.py   | ![screenshot](documentation/testing/python/menu-app/apps.png)   | Pass: No Errors |
+| forms.py  | ![screenshot](documentation/testing/python/menu-app/forms.png)  | Pass: No Errors |
+| models.py | ![screenshot](documentation/testing/python/menu-app/models.png) | Pass: No Errors |
+| urls.py   | ![screenshot](documentation/testing/python/menu-app/urls.png)   | Pass: No Errors |
+| views.py  | ![screenshot](documentation/testing/python/menu-app/views.png)  | Pass: No Errors |
+
+### Lighthouse
+
+I've audited my deployed project with the Lighthouse tool to identify any significant issues. Overall, I'm pleased with the results. However, it's worth noting that the 'Best Practices' score is notably affected by the Cloudinary images.
+
+| Page       | Size    | Screenshot                                                   |
+| ---------- | ------- | ------------------------------------------------------------ |
+| Home       | Desktop | ![screenshot](documentation/testing/lighthouse/home.png)     |
+| About      | Desktop | ![screenshot](documentation/testing/lighthouse/about.png)    |
+| Menu       | Desktop | ![screenshot](documentation/testing/lighthouse/menu.png)     |
+| reviews    | Desktop | ![screenshot](documentation/testing/lighthouse/reviews.png)  |
+| checkout   | Desktop | ![screenshot](documentation/testing/lighthouse/checkout.png) |
+| My Profile | Desktop | ![screenshot](documentation/testing/lighthouse/profile.png)  |
+| Contact us | Desktop | ![screenshot](documentation/testing/lighthouse/contact.png)  |
+| Sign In    | Desktop | ![screenshot](documentation/testing/lighthouse/signin.png)   |
+| Sign Up    | Desktop | ![screenshot](documentation/testing/lighthouse/signup.png)   |
