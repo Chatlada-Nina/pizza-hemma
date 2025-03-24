@@ -22,7 +22,7 @@
     $('.qty_input').change(function() {
         var menuId = $(this).data('menu_id');
         handleEnableDisable(menuId);
-    })
+    });
 
     // Create click event for the increment quantity button on the menu page.
     $('.increment-qty').click(function(e) {
@@ -32,7 +32,7 @@
         $(closestInput).val(currentValue + 1);
         var menuId = $(this).data('menu_id');
         handleEnableDisable(menuId);
-    })
+    });
 
     // Create click event for the decrement quantity button on the menu page.
     $('.decrement-qty').click(function(e) {
@@ -42,7 +42,7 @@
         $(closestInput).val(currentValue - 1);
         var menuId = $(this).data('menu_id');
         handleEnableDisable(menuId);
-    })
+    });
 
     // Save scroll position before form submission
     $('.add-to-cart-form').submit(function() {

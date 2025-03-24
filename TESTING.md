@@ -307,3 +307,18 @@ Defensive programming was manually tested with the below user acceptance testing
 | As an admin, I can view and manage orders so that I can ensure timely preparation and delivery of pizzas.                              | ![screenshot](documentation/testing/user-story/admin-order.png)            |
 | As an admin, I can monitor and respond to user feedback so that I can address any issues and improve the restaurant's service.         | ![screenshot](documentation/testing/user-story/admin-reviews.png)          |
 | As a user, I can leave feedback and reviews for pizzas so that I can share my dining experience and help others make informed choices. | ![screenshot](documentation/testing/user-story/reviews.png)                |
+
+### Solved Bugs
+
+- When I clicked the remove link on the cart page, the item was not being removed from the cart in the session. After spending hours troubleshooting the issue, I discovered that I had mistakenly specified menu_id as an integer in urls.py when it should have been a string. This caused the item not to be found and removed as expected. To resolve the issue, I removed the int: term so that the URL parameter menu_id would be treated as a string, as it should be.
+
+- During testing the stripe payment, I found that when I select Delivery Method: pickup, the grand total is showing correctly on the checkout page. However, Stripe (via webhook) is still adding the delivery cost to the grand total (even when the method is set to "pickup"). Efter many hours of looking at what the issue was and where. I found that it might be the grand total and delivery cost did not separate consistently before passing the data to Stripe. I was passing the grand total as total in checkout, but not considering the correct separation of delivery cost for the Stripe PaymentIntent.To fix the issue, I added a calculation total and delivery cost and then stored delivery cost and method for Stripe before saving order, passing the delivery method and delivery cost in the metadata on my checkout views.py. Also add `request.session.modified = True` to make sure the session is updated.
+
+  - On webhook_handler.py, I added a recalculation gran_total to make sure it’s correct before saving. Ensured that delivery costs are only added when "delivery" is selected, I used Decimal(0) to avoid potential floating-point issues.
+  - On checkout/forms.py, I added 'delivery_method' to placeholders to ensure that when `self.fields['delivery_method']` is processed, it won't raise an error.
+  - On Confirmation_email_body.txt, I added the condition for the delivery method to make it easier and clearer for users.
+  - On views.py, I added `delivery_method = request.POST.get('delivery_method', 'not_specified')` to log and send the correct data to Stripe and passed the delivery method to metadata before creating the payment intent.
+
+- The uploaded image on the reviews page was not appearing on the website because I did not use `mutipart/form-data` to handle file uploads. To resolve this issue, I updated the review form by adding `enctype="multipart/form-data"` and modified `views.py` to include `request.FILES` . These changes ensured that the form properly saved the uploaded file and displayed it on the site as intended.
+
+- One of my users reported that each time they clicked "Add an Item," the menu page would reload and return to the top, requiring them to scroll back down to their previous position. To enhance the user experience, I implemented a JavaScript functionality on `menu/includes/quantity_input_script.html` that preserves the scroll position before form submission and restores it after the page reloads.

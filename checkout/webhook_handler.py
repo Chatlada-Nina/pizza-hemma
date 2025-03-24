@@ -77,14 +77,14 @@ class StripeWH_Handler:
             shipping_details = getattr(intent, 'shipping', {}) or {}
             shipping_address = shipping_details.get('address', {}) or {}
 
-            full_name = shipping_details.get('name', billing_details.get('name')) 
+            full_name = shipping_details.get('name', billing_details.get('name'))
             email = shipping_details.get('email', billing_details.get('email'))
             if not email:
                 email = "no-email@example.com"
             phone = shipping_details.get('phone', billing_details.get('phone'))
             if not phone:
                 phone = "no-phone@example.com" 
-            street_address = shipping_address.get('line1', '')  
+            street_address = shipping_address.get('line1', '')
             postcode = shipping_address.get('postal_code', None)
 
             metadata = intent.metadata  # Store metadata

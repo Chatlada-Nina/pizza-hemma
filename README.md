@@ -10,11 +10,11 @@
 
 **Pizza Hemma Restaurant** The purpose of the Pizza Hemma website is to provide an inviting and heartfelt space that reflects the cozy, home-like atmosphere of the pizzeria. It aims to share the story of Pizza Hemma’s cherished traditions, highlighting its use of high-quality ingredients and affordable, delicious pizzas crafted with love. The website serves as a bridge between the restaurant and customers by offering essential information such as the menu, prices, and contact details while also fostering a sense of community through customer testimonials and interactive features. For the owner, it is a tool to engage with the local community, build loyalty, and showcase the unique qualities that make Pizza Hemma a beloved dining destination.
 
-![GitHub last commit](https://img.shields.io/github/last-commit/Chatlada-Nina/BKK-Coffee-Corner?color=brown&style=for-the-badge)
-![GitHub contributors](https://img.shields.io/github/contributors/chatlada-nina/BKK-Coffee-Corner?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/chatlada-nina/BKK-Coffee-Corner?style=for-the-badge)
-![GitHub top language](https://img.shields.io/github/languages/top/chatlada-nina/BKK-Coffee-Corner?color=yellow&style=for-the-badge)
-![W3C Validation](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fbkk-coffee-corner-f07d5b0b8233.herokuapp.com%2F&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/Chatlada-Nina/pizza-hemma?style=for-the-badge&color=blue)
+![GitHub contributors](https://img.shields.io/github/contributors/Chatlada-Nina/pizza-hemma?style=for-the-badge&color=red)
+![GitHub language count](https://img.shields.io/github/languages/count/Chatlada-Nina/pizza-hemma?style=for-the-badge&color=brown)
+![GitHub top language](https://img.shields.io/github/languages/top/Chatlada-Nina/pizza-hemma?style=for-the-badge&color=yellow)
+![W3C Validation](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fpizza-hemma-4a540b28342f.herokuapp.com%2F&style=for-the-badge)
 
 ## CONTENTS
 
