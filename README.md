@@ -257,7 +257,7 @@ Navigation dropdown menu on mobile screen size:<br>
 
 ### Contact us Page
 
-- The contact us page provides a direct way for users to contact with feedback or inquiries. Ensure users feel supported and have access to give feedback to the site owner, including inquiry of corporation partners.
+- The contact us page provides a direct way for users to contact with feedback or inquiries. Ensure users feel supported and have access to give feedback to the site owner, including inquiry of corporation partners. Additionally, I implemented user handlers for both authenticated and unauthenticated users to improve the user experience. Logged-in users only need to fill out the message field, as their details are automatically populated.
 
 ![Contact us](documentation/readme/contactus.png)
 

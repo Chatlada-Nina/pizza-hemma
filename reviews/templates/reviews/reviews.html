@@ -69,9 +69,9 @@
                 <h2 class="main-text">Write a review:</h2>
                 <p>Reviewing by: <strong>{{ user.username }}</strong></p>
                 <form id="reviewForm" method="POST" enctype="multipart/form-data">
-                    {{ review_form | crispy }}
-                    {% csrf_token %}
-                    <button id="submitButton" type="submit" class="btn btn-order">Submit</button>
+                  {% csrf_token %}
+                  {{ review_form | crispy }}
+                  <button id="submitButton" type="submit" class="btn btn-order">Submit</button>
                 </form>
                 {% else %}
                 <p>Log in to leave a review</p>
