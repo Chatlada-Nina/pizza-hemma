@@ -13,8 +13,8 @@
         <p>Contacting by: <strong>{{ user.username }}</strong></p>
         <form class="row justify-content-center g-2" method="post">
             {% csrf_token %}
-            <input type="hidden" name="name" value="{{ user.get_full_name }}">
-            <input type="hidden" name="email" value="{{ user.email }}">
+            {{ contact_form.name | as_crispy_field }}
+            {{ contact_form.email | as_crispy_field }}
             {{ contact_form.message | as_crispy_field }}
             <div class="text-center mb-4"><button class="submit-btn btn-order" type="submit">Submit</button></div>
         </form>
