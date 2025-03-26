@@ -78,6 +78,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | admin.py  | ![screenshot](documentation/testing/python/about-app/admin.png)  | Pass: No Errors |
 | apps.py   | ![screenshot](documentation/testing/python/about-app/apps.png)   | Pass: No Errors |
 | models.py | ![screenshot](documentation/testing/python/about-app/models.png) | Pass: No Errors |
+| tests.py  | ![screenshot](documentation/testing/python/about-app/tests.png)  | Pass: No Errors |
 | urls.py   | ![screenshot](documentation/testing/python/about-app/urls.png)   | Pass: No Errors |
 | views.py  | ![screenshot](documentation/testing/python/about-app/views.png)  | Pass: No Errors |
 
@@ -89,6 +90,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | apps.py   | ![screenshot](documentation/testing/python/contact-app/apps.png)   | Pass: No Errors |
 | forms.py  | ![screenshot](documentation/testing/python/contact-app/forms.png)  | Pass: No Errors |
 | models.py | ![screenshot](documentation/testing/python/contact-app/models.png) | Pass: No Errors |
+| tests.py  | ![screenshot](documentation/testing/python/contact-app/tests.png)  | Pass: No Errors |
 | urls.py   | ![screenshot](documentation/testing/python/contact-app/urls.png)   | Pass: No Errors |
 | views.py  | ![screenshot](documentation/testing/python/contact-app/views.png)  | Pass: No Errors |
 
@@ -99,6 +101,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | admin.py  | ![screenshot](documentation/testing/python/home-app/admin.png)  | Pass: No Errors |
 | apps.py   | ![screenshot](documentation/testing/python/home-app/apps.png)   | Pass: No Errors |
 | models.py | ![screenshot](documentation/testing/python/home-app/models.png) | Pass: No Errors |
+| tests.py  | ![screenshot](documentation/testing/python/home-app/tests.png)  | Pass: No Errors |
 | urls.py   | ![screenshot](documentation/testing/python/home-app/urls.png)   | Pass: No Errors |
 | views.py  | ![screenshot](documentation/testing/python/home-app/views.png)  | Pass: No Errors |
 
@@ -129,6 +132,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | ----------- | ----------------------------------------------------------------- | --------------- |
 | apps.py     | ![screenshot](documentation/testing/python/cart-app/apps.png)     | Pass: No Errors |
 | contexts.py | ![screenshot](documentation/testing/python/cart-app/contexts.png) | Pass: No Errors |
+| tests.py    | ![screenshot](documentation/testing/python/cart-app/tests.png)    | Pass: No Errors |
 | urls.py     | ![screenshot](documentation/testing/python/cart-app/urls.png)     | Pass: No Errors |
 | views.py    | ![screenshot](documentation/testing/python/cart-app/views.png)    | Pass: No Errors |
 
@@ -154,6 +158,23 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | models.py | ![screenshot](documentation/testing/python/menu-app/models.png) | Pass: No Errors |
 | urls.py   | ![screenshot](documentation/testing/python/menu-app/urls.png)   | Pass: No Errors |
 | views.py  | ![screenshot](documentation/testing/python/menu-app/views.png)  | Pass: No Errors |
+
+### Python (Unit Testing)
+
+I have used Django's built-in unit testing framework to test Home, About, Contact and Cart application functionality.
+
+In order to run the tests, I ran the following command in the terminal each time:
+
+`python manage.py test name-of-app `
+
+Below are the results from the various apps on my application that I've tested:
+
+| App     | File     | Result | Screenshot                                                 |
+| ------- | -------- | ------ | ---------------------------------------------------------- |
+| Home    | tests.py | OK     | ![screenshot](documentation/testing/unit-test/home.png)    |
+| About   | tests.py | OK     | ![screenshot](documentation/testing/unit-test/about.png)   |
+| Contact | tests.py | OK     | ![screenshot](documentation/testing/unit-test/contact.png) |
+| Cart    | tests.py | OK     | ![screenshot](documentation/testing/unit-test/cart.png)    |
 
 ### Lighthouse
 
@@ -289,24 +310,24 @@ Defensive programming was manually tested with the below user acceptance testing
 |                                           | Hover effect other links                                                               | hover effect for other links across the site the colour change                        | Pass      |
 |                                           | Hover effect Social media icons                                                        | hover effect for Social media icons across the site the colour change                 | Pass      |
 
-| User Story                                                                                                                             | Screenshot                                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| As a new user, I can create an account so that I can save my personal details and preferences for a personalized experience.           | ![screenshot](documentation/testing/user-story/signup.png)                 |
-| As a user, I can log in and log out so that I can securely access my account and order history.                                        | ![screenshot](documentation/testing/user-story/signin.png)                 |
-| As a user, I can browse the menu so that I can see all the pizzas and other menus and their details.                                   | ![screenshot](documentation/testing/user-story/menu.png)                   |
-| As a user, I can see my order details and price so that I can make sure my order is correct before payment.                            | ![screenshot](documentation/testing/user-story/cart.png)                   |
-| As a user, I can add pizzas to my cart or delete pizzas from my cart so that I can place a correct order for my favorite pizzas.       | ![screenshot](documentation/testing/user-story/update-delete-cartitem.png) |
-| As a user, I can choose to place an order online so that I can get my pizza delivered or pick it up from the restaurant.               | ![screenshot](documentation/testing/user-story/delivery-method.png)        |
-| As a user, I can place an order online so that I can get my pizza delivered from the restaurant.                                       | ![screenshot](documentation/testing/user-story/delivery-info.png)          |
-| As a user, I can make secure payments easily so that I can pay for my order online through the website.                                | ![screenshot](documentation/testing/user-story/payment.png)                |
-| As a user, I can receive a receipt after a successful payment so that I have proof of my purchase.                                     | ![screenshot](documentation/testing/user-story/checkout-success.png)       |
-| As a user, I can update my profile information so that I can keep my contact details and preferences up to date.                       | ![screenshot](documentation/testing/user-story/profile.png)                |
-| As a user, I can subscribe to special offers so that I can receive exclusive deals and promotions.                                     | ![screenshot](documentation/testing/user-story/subscription.png)           |
-| As an admin, I can add new pizzas and ingredients to the menu so that I can keep the menu up to date with new offerings.               | ![screenshot](documentation/testing/user-story/admin-management.png)       |
-| As an admin, I can manage user accounts so that I can assist users with account-related issues and maintain security.                  | ![screenshot](documentation/testing/user-story/admin-account.png)          |
-| As an admin, I can view and manage orders so that I can ensure timely preparation and delivery of pizzas.                              | ![screenshot](documentation/testing/user-story/admin-order.png)            |
-| As an admin, I can monitor and respond to user feedback so that I can address any issues and improve the restaurant's service.         | ![screenshot](documentation/testing/user-story/admin-reviews.png)          |
-| As a user, I can leave feedback and reviews for pizzas so that I can share my dining experience and help others make informed choices. | ![screenshot](documentation/testing/user-story/reviews.png)                |
+| User Story                                                                                                                             | Screenshot                                                                                                                             |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| As a new user, I can create an account so that I can save my personal details and preferences for a personalized experience.           | ![screenshot](documentation/testing/user-story/signup.png)                                                                             |
+| As a user, I can log in and log out so that I can securely access my account and order history.                                        | ![screenshot](documentation/testing/user-story/signin.png)                                                                             |
+| As a user, I can browse the menu so that I can see all the pizzas and other menus and their details.                                   | ![screenshot](documentation/testing/user-story/menu.png)                                                                               |
+| As a user, I can see my order details and price so that I can make sure my order is correct before payment.                            | ![screenshot](documentation/testing/user-story/cart.png)                                                                               |
+| As a user, I can add pizzas to my cart or delete pizzas from my cart so that I can place a correct order for my favorite pizzas.       | ![screenshot](documentation/testing/user-story/update-delete-cartitem.png)                                                             |
+| As a user, I can choose to place an order online so that I can get my pizza delivered or pick it up from the restaurant.               | ![screenshot](documentation/testing/user-story/delivery-method.png)                                                                    |
+| As a user, I can place an order online so that I can get my pizza delivered from the restaurant.                                       | ![screenshot](documentation/testing/user-story/delivery-info.png)                                                                      |
+| As a user, I can make secure payments easily so that I can pay for my order online through the website.                                | ![screenshot](documentation/testing/user-story/payment.png)                                                                            |
+| As a user, I can receive a receipt after a successful payment so that I have proof of my purchase.                                     | ![screenshot](documentation/testing/user-story/checkout-success.png) ![screenshot](documentation/testing/user-story/confirm-email.png) |
+| As a user, I can update my profile information so that I can keep my contact details and preferences up to date.                       | ![screenshot](documentation/testing/user-story/profile.png)                                                                            |
+| As a user, I can subscribe to special offers so that I can receive exclusive deals and promotions.                                     | ![screenshot](documentation/testing/user-story/subscription.png)                                                                       |
+| As an admin, I can add new pizzas and ingredients to the menu so that I can keep the menu up to date with new offerings.               | ![screenshot](documentation/testing/user-story/admin-management.png)                                                                   |
+| As an admin, I can manage user accounts so that I can assist users with account-related issues and maintain security.                  | ![screenshot](documentation/testing/user-story/admin-account.png)                                                                      |
+| As an admin, I can view and manage orders so that I can ensure timely preparation and delivery of pizzas.                              | ![screenshot](documentation/testing/user-story/admin-order.png)                                                                        |
+| As an admin, I can monitor and respond to user feedback so that I can address any issues and improve the restaurant's service.         | ![screenshot](documentation/testing/user-story/admin-reviews.png)                                                                      |
+| As a user, I can leave feedback and reviews for pizzas so that I can share my dining experience and help others make informed choices. | ![screenshot](documentation/testing/user-story/reviews.png)                                                                            |
 
 ### Solved Bugs
 
