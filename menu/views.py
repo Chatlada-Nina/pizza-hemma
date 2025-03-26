@@ -4,8 +4,6 @@ from django.contrib.auth.decorators import login_required
 from .models import MenuItem, MenuList
 from .forms import MenuForm
 
-# Create your views here.
-
 
 def all_menus(request):
     """

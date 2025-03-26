@@ -6,8 +6,6 @@ from django.contrib.auth import get_user_model
 
 from .models import SubscribedUsers
 
-# Create your views here.
-
 
 def homepage(request):
     """

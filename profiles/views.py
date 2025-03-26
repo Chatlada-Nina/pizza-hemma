@@ -5,8 +5,6 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from checkout.models import Order
 
-# Create your views here.
-
 
 @login_required
 def profile(request):

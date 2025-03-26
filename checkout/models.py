@@ -92,7 +92,8 @@ class Order(models.Model):
         Check the user's choice of delivery method and update grand total each
         time a line item is added accounting for delivery costs.
         """
-        self.order_total = self.linemenus.aggregate(Sum('linemenu_total'))['linemenu_total__sum'] or 0
+        self.order_total = self.linemenus.aggregate(
+            Sum('linemenu_total'))['linemenu_total__sum'] or 0
 
         if self.delivery_method == 'delivery':
             if self.order_total < settings.FREE_DELIVERY_THRESHOLD:

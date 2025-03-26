@@ -57,7 +57,7 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
-    
+
     def handle_payment_intent_succeeded(self, event):
         """
         Handle the payment_intent.succeeded webhook from Stripe
@@ -77,7 +77,8 @@ class StripeWH_Handler:
             shipping_details = getattr(intent, 'shipping', {}) or {}
             shipping_address = shipping_details.get('address', {}) or {}
 
-            full_name = shipping_details.get('name', billing_details.get('name'))
+            full_name = shipping_details.get(
+                'name', billing_details.get('name'))
             email = shipping_details.get('email', billing_details.get('email'))
             if not email:
                 email = "no-email@example.com"
@@ -88,7 +89,9 @@ class StripeWH_Handler:
             postcode = shipping_address.get('postal_code', None)
 
             metadata = intent.metadata  # Store metadata
-            delivery_method = str(intent.metadata.get('delivery_method', 'delivery')).strip().lower()
+            delivery_method = str(
+                intent.metadata.get('delivery_method', 'delivery')
+                ).strip().lower()
 
             # Initialize delivery_cost variable
             delivery_cost = Decimal(0)
@@ -187,13 +190,13 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]} | Order Created',
                     status=200
                 )
-        
+
             except Exception as e:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500
                 )
-            
+
         except Exception as e:
             return HttpResponse(
                 content=f'Error handling payment intent: {e}',

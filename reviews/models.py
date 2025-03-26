@@ -6,8 +6,6 @@ from cloudinary.models import CloudinaryField
 # (From the I think therefore I blog CL project)
 STATUS = ((0, "Draft"), (1, "Published"))
 
-# Create your models here.
-
 
 class Review(models.Model):
     """

@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class About(models.Model):
     """
     This model stores details that will be displayed on

@@ -2,9 +2,6 @@ from django.contrib import admin
 from .models import Review
 
 
-# Register your models here.
-
-
 class ReviewAdmin(admin.ModelAdmin):
     """
     Customizes the Django admin interface for the Review model.

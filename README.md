@@ -285,6 +285,8 @@ Navigation dropdown menu on mobile screen size:<br>
 
 - A delivery tracking feature that allows users to monitor their order status in real-time and receive accurate updates on the estimated arrival time of their delivery.
 
+- I would like to enhance the pick-up method by introducing customizable time slots. This feature will allow users to select their preferred pick-up time when placing an order, ensuring greater convenience and flexibility.
+
 ## Testing
 
 For all testing, please refer to the [TESTING.md](TESTING.md) file.
@@ -494,6 +496,8 @@ I have used various resources to help me with figuring out how to create the Piz
 - Templates for inspiration and creating my README.md and TESTING.md from [Sample README Code Institute](https://github.com/Code-Institute-Solutions/SampleREADME/blob/master/README.md?plain=1), [Hooked on fish-LemmenAid](https://github.com/LemmenAid/hooked-on-fish/blob/main/README.md) and [My Fishing Adventures-Markdanie1982](https://github.com/markdaniel1982/MD82-P4/blob/main/README.md)
 - [Stripe](https://docs.stripe.com/get-started) To handle the ecommerce payments.
 - [Django Ecommerce Project Youtube Tutorial](https://www.youtube.com/watch?v=qwFBXuEeg1U)
+- [Mastering Django Unit Testing](https://docs.djangoproject.com/en/5.1/topics/testing/overview/)
+- [Django's Official Documentation - Writing and running tests](https://www.youtube.com/watch?v=N_HLNV2UQjg)
 - [ChatGPT- used as an accelerating learning tool](https://chat.openai.com/)
 - [Microsoft Copilot - used as an accelerating learning tool](https://copilot.microsoft.com/)
 - [Learn Django - for the custom error pages](https://learndjango.com/tutorials/customizing-django-404-and-500-error-pages)

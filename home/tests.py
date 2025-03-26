@@ -2,8 +2,6 @@ from django.test import TestCase
 from django.urls import reverse
 from .models import SubscribedUsers
 
-# Create your tests here.
-
 
 class TestHomeViews(TestCase):
     """Tests for the home app views."""

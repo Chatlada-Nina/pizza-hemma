@@ -19,8 +19,6 @@ from cart.contexts import cart_contents
 import stripe
 import json
 
-# Create your views here.
-
 
 @require_POST
 def cache_checkout_data(request):
@@ -128,7 +126,8 @@ def checkout(request):
             # Check delivery method and calculate delivery cost
             if delivery_method == 'delivery':
                 if total < settings.FREE_DELIVERY_THRESHOLD:
-                    delivery_cost = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+                    delivery_cost = total * Decimal(
+                        settings.STANDARD_DELIVERY_PERCENTAGE / 100)
                 else:
                     delivery_cost = 0
             else:
@@ -194,7 +193,8 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
             metadata={
                 'cart': json.dumps(cart),
-                'delivery_method': request.session.get('delivery_method', 'delivery'),
+                'delivery_method': request.session.get(
+                    'delivery_method', 'delivery'),
                 'delivery_cost': str(delivery_cost),
             })
 
@@ -219,8 +219,9 @@ def checkout(request):
             })
 
         if not stripe_public_key:
-            messages.warning(request, "Stripe public key is missing."
-                                      "Did you forgot to set it to your environment?")
+            messages.warning(
+                request, "Stripe public key is missing."
+                "Did you forgot to set it to your environment?")
 
         template = 'checkout/checkout.html'
         context = {

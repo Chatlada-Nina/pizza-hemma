@@ -4,8 +4,6 @@ from django.http import HttpResponseRedirect
 from .models import Review
 from .forms import ReviewForm
 
-# Create your views here.
-
 
 def reviews(request):
     """
