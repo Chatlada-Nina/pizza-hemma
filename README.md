@@ -61,7 +61,7 @@
 
 ### User’s Goal
 
-Users want to explore and connect with the restaurant in their local area which is in Gothenburg in this website,They want to learn about the story and values behind Pizza Hemma, browse the menu to find their favorite pizza, check prices, or gather practical information like location and opening hours. Some users aim to order online, make a contact, or even share their own experiences on the reviews page and get some exclusive offering.
+Users want to explore and connect with the restaurant in their local area which is in Gothenburg. On this website,They want to learn about the story and values behind Pizza Hemma, browse the menu to find their favorite pizza, check prices, or gather practical information like location and opening hours. Some users aim to order online, make a contact, or even share their own experiences on the reviews page and get some exclusive offers.
 
 ### Owner’s Goal
 
@@ -69,13 +69,13 @@ The site owner aims to enhance the restaurant's visibility and attract more cust
 
 ### Colours Theme
 
-The Pizza Hemma is a local user-friendly restaurant website. The main colours I chose are Green and Red as they reflect the Italian flag. This creates an authentic and traditional feel, reinforcing the pizzeria's heritage. Green represents freshness, natural ingredients, and health. Red is known to stimulate appetite and create a sense of warmth, passion, and excitement, food-focused environment. It draws attention and makes the space feel vibrant and welcoming. Both colors highlights the use of high-quality, fresh ingredients in the pizzas. Moreover, I used [WebAIM:Contrast Checker](https://webaim.org/resources/contrastchecker/) to check the contrast of my colours to ensure they are easy to read for users.
+The Pizza Hemma is a local user-friendly restaurant website. The main colours I chose are Green and Red as they reflect the Italian flag. This creates an authentic and traditional feel, reinforcing the pizzeria's heritage. Green represents freshness, natural ingredients, and health. Red is known to stimulate appetite and create a sense of warmth, passion, and excitement, food-focused environment. It draws attention and makes the space feel vibrant and welcoming. Both colors highlight the use of high-quality, fresh ingredients in the pizzas. Moreover, I used [WebAIM:Contrast Checker](https://webaim.org/resources/contrastchecker/) to check the contrast of my colours to ensure they are easy to read for users.
 
 ![The colour theme of the website](/documentation/readme/color-theme.png)
 
 ### Typography
 
-I used [Alfa Slab One](https://fonts.google.com/specimen/Alfa+Slab+One) pairing with [Chivo](https://fonts.google.com/specimen/Chivo) referred to [Creatopy-Google Font Pairings](https://www.creatopy.com/blog/google-font-pairings/) Chivo have details that make the text look remarkable but not steal the spotlight from Alfa Slan One which is designed for a title with great personality that is meant to be seen.
+I used [Alfa Slab One](https://fonts.google.com/specimen/Alfa+Slab+One) pairing with [Chivo](https://fonts.google.com/specimen/Chivo) referred to [Creatopy-Google Font Pairings](https://www.creatopy.com/blog/google-font-pairings/) Chivo have details that make the text look remarkable but not steal the spotlight from Alfa Slab One which is designed for a title with great personality that is meant to be seen.
 
 Additionally, I use [Font Awesome](https://fontawesome.com/) for icons to make the site casual and friendly and for my social media icons in the footer to help users quickly and easily identify my social media sites.
 
@@ -131,7 +131,7 @@ I used [Lucidchart](https://www.lucidchart.com/pages) for my data plan. The data
 12. As a user, I can subscribe to special offers so that I can receive exclusive deals and promotions.
 13. As an admin, I can add new pizzas and ingredients to the menu so that I can keep the menu up to date with new offerings.
 14. As an admin, I can manage user accounts so that I can assist users with account-related issues and maintain security.
-15. As an admin, I can view and manage orders so that I can ensure correctly orders, timely preparation and delivery of pizzas.
+15. As an admin, I can view and manage orders so that I can ensure correct orders, timely preparation and delivery of pizzas.
 16. As an admin, I can view and manage payments so that I can keep track of all transactions and handle any payment issues.
 17. As a user, I can leave feedback and reviews for pizzas so that I can share my dining experience and help others make informed choices.
 18. As an admin, I can monitor and respond to user feedback so that I can address any issues and improve the restaurant's service.
@@ -156,7 +156,7 @@ This project was designed using Agile methodology, utilising the Project Board a
 ### Frameworks, programs and libraries
 
 - [Django](https://docs.djangoproject.com/en/5.0/) - Framework used to create website.
-- [AllAuth](https://docs.allauth.org/en/latest/) - used to provide authentication framework for the project.
+- [AllAuth](https://docs.allauth.org/en/latest/) - used to provide an authentication framework for the project.
 - [Django signals](https://docs.djangoproject.com/en/5.0/topics/signals/) - Using signals.py to automatically create a profile when a new member registers.
 - [PostGreSQL database](https://www.postgresql.org/) - used as the relational database management for the website.
 - [Github](https://github.com/) - Used for hosting the repository.
@@ -165,13 +165,13 @@ This project was designed using Agile methodology, utilising the Project Board a
 - [Heroku](https://www.heroku.com/) - Used for deploying the live project.
 - [Bootstrap](https://getbootstrap.com/) - Used to add style to the displayed pages.
 - [Microsoft Copilot](https://copilot.microsoft.com/) - Used to create the content on the pages.
-- [Clouidnary](https://cloudinary.com/) - Used to host images and integrate with django and the admin portal.
+- [Cloudinary](https://cloudinary.com/) - Used to host images and integrate with django and the admin portal.
 
 ## Features
 
 ### Navigation Bar
 
-- The full responsive navigation bar includes the Pizza Hemma logo that link to the homepage, About, Menu, Review, Contact, Cart, Account icon dropdown to Register and Login page and the Call-To-Action button "ORDER HERE". The nevigation bar is identical on each page to allow users for easy navigation at all time.
+- The full responsive navigation bar includes the Pizza Hemma logo that links to the homepage, About, Menu, Review, Contact, Cart, Account icon dropdown to Register and Login page and the Call-To-Action button "ORDER HERE". The navigation bar is identical on each page to allow users for easy navigation at all time.
 
 - The pictures below show the Navigation bar on the laptop and mobile screen sizes.
 
@@ -215,11 +215,11 @@ Navigation dropdown menu on mobile screen size:<br>
 
 - The checkout page provides a clear overview of your order, including the order details, total cost, delivery fee, and the grand total. It features user information fields such as full name, email, phone number, and a delivery method, allowing users to choose between pick-up or delivery. Please note, the delivery service is only available within Gothenburg City. In the Address section, users can input their street address and postcode, with 'Gothenburg' set as the default city and 'SE' (Sweden) as the default country. To enhance convenience, the page includes links to create an account or log in, enabling users to save their information for future orders. Additional features include a payment field, an option to adjust the cart for any last-minute changes, and a "Complete Order" button for finalizing the purchase.
 
-- User who is not registered will see this checkout page.
+- Users who are not registered will see this checkout page.
 
 ![Checkout Page](documentation/readme/checkout-page.png)
 
-- User who is registered and has saved information on the profile will see this checkout page.
+- Users who are registered and have saved information on the profile will see this checkout page.
 
 ![Checkout Page - Member](documentation/readme/checkout-page-member.png)
 
@@ -237,7 +237,7 @@ Navigation dropdown menu on mobile screen size:<br>
 
 ![Reviews page as a member ](documentation/readme/reviews-page-member.png)
 
-- The delete confirmation will pop up if user want to delete his/her reviews.
+- The delete confirmation will pop up if the user wants to delete his/her reviews.
 
 ![Confirm delete modal ](documentation/readme/confirm-delete-review.png)
 
@@ -468,8 +468,8 @@ The project should now be connected and deployed to Heroku!
 
 ## Credits
 
-- I would like to thank you Code Institute tutors and slack channel community for guiding and helping me through the process of building my final project.
-- I would like to thank you my husband and family for supporting and taking time to test my website and giving me valuable feedbacks.
+- I would like to thank Code Institute tutors and the slack channel community for guiding and helping me through the process of building my final project.
+- I would like to thank my husband and family for supporting and taking time to test my website and giving me valuable feedback.
 
 ### Content
 
@@ -494,7 +494,7 @@ I have used various resources to help me with figuring out how to create the Piz
 - The rating system was learned and modified from [StackOverFlow Community](https://stackoverflow.com/questions/45845427/styling-an-integerfield-to-make-it-a-star-rating-system)
 - Modified and combined components methods from documentations and tutorials on CI learning platform, [W3Schools](https://w3Schools.com/), [MDN Web Docs](https://developer.mozilla.org/en-US/) and [StackOverFlow](https://stackoverflow.co/)
 - Templates for inspiration and creating my README.md and TESTING.md from [Sample README Code Institute](https://github.com/Code-Institute-Solutions/SampleREADME/blob/master/README.md?plain=1), [Hooked on fish-LemmenAid](https://github.com/LemmenAid/hooked-on-fish/blob/main/README.md) and [My Fishing Adventures-Markdanie1982](https://github.com/markdaniel1982/MD82-P4/blob/main/README.md)
-- [Stripe](https://docs.stripe.com/get-started) To handle the ecommerce payments.
+- [Stripe](https://docs.stripe.com/get-started) To handle ecommerce payments.
 - [Django Ecommerce Project Youtube Tutorial](https://www.youtube.com/watch?v=qwFBXuEeg1U)
 - [Mastering Django Unit Testing](https://docs.djangoproject.com/en/5.1/topics/testing/overview/)
 - [Django's Official Documentation - Writing and running tests](https://www.youtube.com/watch?v=N_HLNV2UQjg)
